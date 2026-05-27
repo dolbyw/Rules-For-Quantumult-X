@@ -9,9 +9,9 @@
 hostname= isi.csan.*, notability.com
 
 # > Goodbility@ddgksf2013
-^https:\/\/isi\.csan.[a-z.]+\/.+\/(receipts$|subscribers\/[^/]+$) url script-response-body https://r.sveir.xyz/Scripts/Unlock/Goodbility.min.js
-^https:\/\/isi\.csan.[a-z.]+\/.+\/(receipts|subscribers) url script-request-header https://r.sveir.xyz/Scripts/Unlock/MoveRevenueCat.min.js
-^https?:\/\/notability\.com\/global url script-response-body https://r.sveir.xyz/Scripts/Unlock/Goodbility.min.js
+^https:\/\/isi\.csan.[a-z.]+\/.+\/(receipts$|subscribers\/[^/]+$) url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/Goodbility.min.js
+^https:\/\/isi\.csan.[a-z.]+\/.+\/(receipts|subscribers) url script-request-header https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/MoveRevenueCat.min.js
+^https?:\/\/notability\.com\/global url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/Goodbility.min.js
 
 
 

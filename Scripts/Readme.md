@@ -26,7 +26,7 @@
 <br />
 
 <p align="center">
-  <a href="https://github.com/sve1r/Rules-For-Quantumult-X/">
+  <a href="https://github.com/dolbyw/Rules-For-Quantumult-X/">
     <img src="../images/logo.png" alt="Logo" width="160" height="160">
   </a>
 
@@ -62,11 +62,11 @@
  
 例如：
 
-① https://raw.githubusercontent.com/sve1r/Rules-For-Quantumult-X/master/Scripts/Example/Example.js `此为浏览器地址栏中获取到的链接`
+① https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Example/Example.js `此为浏览器地址栏中获取到的链接`
 
 或
 
-② https://github.com/sve1r/Rules-For-Quantumult-X/raw/master/Scripts/Example/Example.js `此为右键 RAW 按钮获取到的链接`
+② https://github.com/dolbyw/Rules-For-Quantumult-X/raw/main/Scripts/Example/Example.js `此为右键 RAW 按钮获取到的链接`
 
 >Tips：由于 Github 会将 ②链接 302重定向至 ①链接，所以上面两个链接在实际使用中为等同效果。
 实际使用中可以使用 ②链接 以此减少一部分的配置文件存储大小。
@@ -132,6 +132,5 @@
 - 此处的文字仅用于说明，条款以LICENSE文件中的内容为准。
 
 - 请在遵守当地相关法律法规的前提下使用本项目，我们不为使用此项目内容出现问题负任何责任。
-
 
 

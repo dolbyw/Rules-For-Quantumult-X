@@ -16,9 +16,9 @@ hostname = common.diditaxi.com.cn, freight.xiaojukeji.com, daijia.kuaidadi.com, 
 ^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget url reject-dict
 ^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/other\/fast url reject-dict
 ^https:\/\/conf\.diditaxi\.com\.cn\/dynamic\/conf url reject-dict
-^https:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Didi.min.js
-^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Didi.min.js
-^https:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v1\/other\/pGetSceneList url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Didi.min.js
-^https:\/\/conf\.diditaxi\.com\.cn\/ota\/na\/yuantu\/infoList url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Didi.min.js
-^https:\/\/api\.udache\.com\/gulfstream\/passenger-center\/v2\/other\/pInTripLayout url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Didi.min.js
+^https:\/\/common\.diditaxi\.com\.cn\/common\/v\d\/usercenter\/me url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Didi.min.js
+^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v\d\/core url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Didi.min.js
+^https:\/\/api\.udache\.com\/gulfstream\/pre-sale\/v1\/other\/pGetSceneList url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Didi.min.js
+^https:\/\/conf\.diditaxi\.com\.cn\/ota\/na\/yuantu\/infoList url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Didi.min.js
+^https:\/\/api\.udache\.com\/gulfstream\/passenger-center\/v2\/other\/pInTripLayout url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Didi.min.js
 ^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/other\/slow url reject-dict

@@ -5,4 +5,4 @@
 
 hostname = purchase-foodiecn-api.yiruikecorp.com
 
-^https:\/\/purchase-foodiecn-api\.yiruikecorp\.com\/v1\/purchase\/subscription\/subscriber\/status url script-response-body https://r.sveir.xyz/Scripts/Unlock/Foodie.min.js
+^https:\/\/purchase-foodiecn-api\.yiruikecorp\.com\/v1\/purchase\/subscription\/subscriber\/status url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/Foodie.min.js

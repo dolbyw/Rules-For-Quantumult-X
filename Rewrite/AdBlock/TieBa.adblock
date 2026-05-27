@@ -32,4 +32,4 @@ IP-CIDR,180.76.76.200/32,reject
 # > 页面中部广告@ddgksf2013
 ^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/ad\/getFeedAd url reject-200
 # > 贴吧proto处理@app2smile
-^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd url script-response-body https://r.sveir.xyz/Scripts/AdBlock/Other/Tieba.min.js
+^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Other/Tieba.min.js

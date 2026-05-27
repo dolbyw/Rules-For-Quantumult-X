@@ -1,4 +1,4 @@
 hostname = api.meiease.cn
 
 # ✅ Picsart
-^https?:\/\/api\.meiease\.cn\/shop\/subscription\/validate url script-response-body https://r.sveir.xyz/Scripts/Unlock/PicsArt.min.js
+^https?:\/\/api\.meiease\.cn\/shop\/subscription\/validate url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/PicsArt.min.js

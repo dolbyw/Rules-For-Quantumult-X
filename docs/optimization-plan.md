@@ -78,6 +78,8 @@
 - 再替换示例配置中的远程规则 URL。
 - 最后处理重写资源内部脚本 URL，并逐项验证脚本可访问性。
 
+执行状态：已在 2026-05-27 执行，子 README、历史示例配置和重写资源内部脚本 URL 已切换到 `dolbyw/Rules-For-Quantumult-X` 的 `main` 分支 Raw 入口。目标范围内旧维护者链接仅保留根 README 的“不再推荐旧仓库”历史说明。重写资源中 44 个唯一 Raw 脚本 URL 已逐项通过远程可访问性检查。
+
 ### 第四阶段：规则去重和拆分
 
 - 优先处理 `Rules/Region/Global.list`、`BackCN/BackCN.list`、`Rules/Services/Microsoft.list` 等重复较多文件。
