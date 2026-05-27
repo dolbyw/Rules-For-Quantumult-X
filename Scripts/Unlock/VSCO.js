@@ -3,7 +3,7 @@
  Please note that you may need to reinstall app for script to work.
 
  QuantumultX rewrite link:
- https://cdn.jsdelivr.net/gh/sve1r/Rules-For-Quantumult-X@develop/Scripts/VIP/VSCO/Unlock.js
+ https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/VSCO.js
 
  Please note that the above rewrite link requires open KOP-XIAO's resource parser
 

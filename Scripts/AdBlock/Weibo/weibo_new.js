@@ -2,7 +2,7 @@
  > 应用名称：微博&微博国际版净化脚本
  > 脚本作者：@sve1r
  > 更新时间：2025-09-16
- > 通知频道：https://t.me/sve1r
+ > 维护仓库：https://github.com/dolbyw/Rules-For-Quantumult-X
  > 脚本声明：若有侵犯原作者权利，请联系删除
  ***********************************************/
 
@@ -1995,7 +1995,7 @@ function removeVoteInfo(item) {
  > 应用名称：微博&微博国际版净化脚本
  > 脚本作者：@sve1r
  > 更新时间：2025-09-16
- > 通知频道：https://t.me/sve1r
+ > 维护仓库：https://github.com/dolbyw/Rules-For-Quantumult-X
  > 脚本声明：若有侵犯原作者权利，请联系删除
  ***********************************************/
 

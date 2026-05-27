@@ -1,11 +1,11 @@
-﻿/*
+/*
 微信 去除公众号文章底部广告
 
 ***************************
 QuantumultX:
 
 [rewrite_local]
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad url script-response-body https://cdn.jsdelivr.net/gh/sve1r/Rules-For-Quantumult-X@develop/Scripts/AdBlock/Wechat/Wechat.js
+^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/AdBlock/Wechat/Wechat.js
 
 [mitm]
 hostname = mp.weixin.qq.com

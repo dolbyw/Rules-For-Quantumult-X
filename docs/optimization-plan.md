@@ -102,6 +102,8 @@
 - 增加 README 文件索引一致性检查。
 - 后续可生成订阅索引，减少手写链接。
 
+执行状态：已在 2026-05-27 建立 `.github/workflows/validate.yml`，在 push 和 pull request 中运行 `node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js`、`node tools/validate-qx-rules.js --strict` 和 `node tools/check-maintenance.js`。维护检查会阻断生产资源中的旧维护链接，并确认 README 文件说明索引与已纳入版本管理的文件一致。订阅索引生成尚未启用，保留为后续自动化扩展项。
+
 ## 风险控制
 
 - 不批量自动删除规则。
@@ -112,10 +114,10 @@
 ## 建议验证命令
 
 ```powershell
-node --test tools/validate-qx-rules.test.js
-node tools/validate-qx-rules.js
+node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js
 node tools/validate-qx-rules.js --json
-rg -n "r\.sveir\.xyz|sve1r|rules-for-qx\.sveir|t\.me/sve1r" .
+node tools/validate-qx-rules.js --strict
+node tools/check-maintenance.js
 git status --short
 ```
 

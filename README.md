@@ -258,7 +258,7 @@ Rules-For-Quantumult-X
 
 ## 文件说明索引
 
-本节按当前工作区文件树生成，覆盖 308 个文件。说明基于文件路径、命名和已知 Quantumult X 资源类型整理；标注“待验证”的条目需要在后续维护中结合真实接口和 Quantumult X 运行结果确认。
+本节按当前工作区文件树生成，覆盖 311 个文件。说明基于文件路径、命名和已知 Quantumult X 资源类型整理；标注“待验证”的条目需要在后续维护中结合真实接口和 Quantumult X 运行结果确认。
 
 ### 根目录文件
 
@@ -280,6 +280,7 @@ Rules-For-Quantumult-X
 |---|---|
 | `.github/ISSUE_TEMPLATE/bug.md` | bug Markdown 文档。 |
 | `.github/ISSUE_TEMPLATE/需求请求.md` | 需求请求 Markdown 文档。 |
+| `.github/workflows/validate.yml` | GitHub Actions 校验流程，运行规则测试、strict 校验和维护检查。 |
 
 ### BackCN 回国规则
 
@@ -596,6 +597,8 @@ Rules-For-Quantumult-X
 | `tools/fixtures/qx-validator/duplicate/duplicate.list` | 重复规则样例，用于验证重复检测。 |
 | `tools/fixtures/qx-validator/legacy-link/legacy.md` | 旧链接样例，用于验证历史域名和维护者标识检查。 |
 | `tools/fixtures/qx-validator/real-error/invalid.list` | 真实格式错误样例，用于验证 strict 模式仍能拦截错误。 |
+| `tools/check-maintenance.js` | 仓库维护检查 CLI，用于阻断生产旧链接和 README 文件索引漂移。 |
+| `tools/check-maintenance.test.js` | 维护检查 CLI 的 Node.js 内置测试用例。 |
 | `tools/validate-qx-rules.js` | 只读 Quantumult X 规则校验 CLI，用于扫描格式问题、重复规则和旧链接。 |
 | `tools/validate-qx-rules.test.js` | 校验 CLI 的 Node.js 内置测试用例。 |
 
@@ -618,12 +621,12 @@ Rules-For-Quantumult-X
 截至 2026-05-27，本地仓库初步审查结果：
 
 - 已初始化 Git 仓库。
-- 核心文件约 292 个，包括 `.list`、`.adblock`、`.unlock`、`.conf`、`.js`、`.md`。
+- 当前版本管理文件 311 个，包括 `.list`、`.adblock`、`.unlock`、`.conf`、`.js`、`.md`、工作流和维护脚本。
 - 根 README 已更新为当前维护仓库的说明，不再默认推荐旧仓库私有 CDN。
-- 仓库没有自动生成订阅索引或校验规则的 GitHub Actions。
+- 仓库已增加 GitHub Actions，用于运行规则测试、strict 校验、旧链接检查和 README 文件索引一致性检查。
 - 多数规则仍来自旧维护时期，建议后续按服务逐步校验，而不是一次性大规模替换。
 - `.list` 文件中存在重复规则和部分待确认规则类型，例如 `host-wildcard`。需要后续建立校验脚本，明确哪些类型是 Quantumult X 当前版本支持的语法，哪些需要转换。
-- `Scripts/Readme.md`、`Rules/Media/Readme.md` 和部分示例配置仍含旧仓库链接，建议下一步继续更新。
+- `Scripts/Readme.md`、`Rules/Media/Readme.md` 和历史维护文档中仍保留部分旧仓库说明，应避免作为推荐入口。
 
 ## 本地规则校验
 
@@ -653,6 +656,20 @@ node tools/validate-qx-rules.js --strict
 
 默认模式只输出报告，不会修改任何文件，也不会因为 warning 阻断流程。`--strict` 模式仅在发现 error 时返回非零退出码，适合后续接入 GitHub Actions。
 
+维护检查：
+
+```powershell
+node tools/check-maintenance.js
+```
+
+该检查会在生产资源中发现旧维护链接时返回非零退出码，并确认 README 文件说明索引覆盖所有已纳入版本管理的文件。测试和 CI 使用：
+
+```powershell
+node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js
+node tools/validate-qx-rules.js --strict
+node tools/check-maintenance.js
+```
+
 ## 后续维护计划
 
 建议按以下优先级继续维护：
@@ -673,7 +690,7 @@ node tools/validate-qx-rules.js --strict
    将广告、功能增强、解锁脚本分开说明，默认只推荐低风险分流规则。
 
 6. 增加 GitHub Actions  
-   至少包含规则格式检查、重复规则统计、README 链接检查。
+   已完成基础校验流程；后续可增加订阅索引生成和链接可访问性抽样检查。
 
 7. 持续更新重点服务  
    优先维护 OpenAI、Google/YouTube、GitHub、Telegram、Netflix、Disney、Spotify、TikTok、Apple、Microsoft、国内主流应用。
