@@ -10,3 +10,7 @@
 
 # macOS File System
 .DS_Store
+
+# Local-only development notes and documents
+README.local.md
+docs/
