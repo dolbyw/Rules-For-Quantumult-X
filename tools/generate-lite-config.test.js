@@ -24,6 +24,22 @@ test("buildConfig 生成包含核心区块和稳定入口注释的 Quantumult X 
   assert(content.endsWith("\n"));
 });
 
+test("buildConfig 生成不依赖固定订阅名称的地区策略组", () => {
+  const content = buildConfig();
+
+  assert(!content.includes("resource-tag-regex=我的节点订阅"));
+  assert(content.includes("static = 出境代理, proxy, 香港节点"));
+  assert(content.includes("resource-tag-regex=.*"));
+  assert(content.includes("server-tag-regex=🇯🇵|日本"));
+  assert(content.includes("server-tag-regex=🇺🇸|美国"));
+});
+
+test("buildConfig 默认关闭 AAAA 解析以减少移动网络 IPv6 干扰", () => {
+  const content = buildConfig();
+
+  assert.match(content, /\[dns]\n[\s\S]*\nno-ipv6\n/);
+});
+
 test("generateLiteConfig 写入稳定配置，内容未变化时不创建新的日期快照", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "qx-lite-"));
   const today = "20260528";

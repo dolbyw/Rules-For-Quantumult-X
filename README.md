@@ -30,7 +30,7 @@ resource_parser_url = https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/mas
 
 <!-- AUTO_SUBSCRIPTION_LINKS:START -->
 > 自动生成：请勿手改本区块，运行 `node tools/generate-subscription-links.js` 更新。
-> 基准配置：`QuantumultX-Lite.conf`，内容哈希：`434f4c434a54`。
+> 基准配置：`QuantumultX-Lite.conf`，内容哈希：`4604fffc7636`。
 
 ### 配置订阅（建议）
 

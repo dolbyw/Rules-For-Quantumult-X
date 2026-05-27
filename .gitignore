@@ -14,3 +14,7 @@
 # Local-only development notes and documents
 README.local.md
 docs/
+
+# Local diagnostics and imported reference files
+*.log
+示例配置.txt
