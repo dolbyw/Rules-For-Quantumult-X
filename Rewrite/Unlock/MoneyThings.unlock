@@ -1,8 +1,0 @@
-##############################
-# Money things 解锁
-# LastUpdateDate: 2024-01-14 19:11:49
-##############################
-
-hostname = api.revenuecat.com
-
-^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})$ url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/MoneyThings.min.js

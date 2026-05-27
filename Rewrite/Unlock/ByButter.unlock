@@ -1,4 +1,0 @@
-hostname = api4.bybutter.com, *.bybutter.com
-
-# ✅ 黄油相机
-^https?:\/\/api4\.bybutter\.com\/v4\/(users\/me$|shop\/me\/privileges$) url script-response-body https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/ByButter.min.js

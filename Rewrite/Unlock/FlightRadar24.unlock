@@ -1,4 +1,0 @@
-hostname = mobile.flightradar24.com
-
-# ✅ Flightradar24
-^https?:\/\/mobile\.flightradar24\.com\/mobile\/(user-session|\w{9}) url script-echo-response https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Scripts/Unlock/FlightRadar24.min.js

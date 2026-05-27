@@ -64,14 +64,18 @@ function normalizePath(filePath) {
 function collectSampleConfigs(targetPath) {
   const stat = fs.statSync(targetPath);
   if (stat.isFile()) {
-    return path.basename(targetPath).startsWith("Sample_") && targetPath.endsWith(".conf") ? [targetPath] : [];
+    return isAuditedConfigName(path.basename(targetPath)) ? [targetPath] : [];
   }
 
   return fs
     .readdirSync(targetPath, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && /^Sample_.*\.conf$/i.test(entry.name))
+    .filter((entry) => entry.isFile() && isAuditedConfigName(entry.name))
     .map((entry) => path.join(targetPath, entry.name))
     .sort();
+}
+
+function isAuditedConfigName(fileName) {
+  return /^Sample_.*\.conf$/i.test(fileName) || /^QuantumultX-Lite-\d{8}\.conf$/i.test(fileName);
 }
 
 function splitSections(content) {
@@ -433,6 +437,7 @@ module.exports = {
   buildAuditReport,
   collectSampleConfigs,
   formatText,
+  isAuditedConfigName,
   parseArgs,
   parseRemoteEntry,
   splitSections,

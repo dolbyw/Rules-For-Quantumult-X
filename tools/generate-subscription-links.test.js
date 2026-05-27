@@ -25,7 +25,7 @@ https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Rewrite/AdB
   const block = buildGeneratedBlock(sample, { repo: "demo/repo", branch: "main" });
   assert(block.includes("quantumult-x:///add-resource"));
   assert(block.includes("https://quantumult.app/x/open-app/add-resource"));
-  assert(block.includes("https://raw.githubusercontent.com/demo/repo/main/Sample_v1.5.3.conf"));
+  assert(block.includes("https://raw.githubusercontent.com/demo/repo/main/QuantumultX-Lite-20260528.conf"));
 });
 
 test("createReadmeWithSubscriptionLinks 替换目标区块", () => {

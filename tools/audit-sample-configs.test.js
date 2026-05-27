@@ -3,6 +3,7 @@ const path = require("node:path");
 const test = require("node:test");
 const {
   buildAuditReport,
+  isAuditedConfigName,
   parseArgs,
   parseRemoteEntry,
 } = require("./audit-sample-configs");
@@ -23,6 +24,12 @@ test("parseRemoteEntry 解析 URL 与参数", () => {
   assert.equal(entry.url, "https://a.com/r.list");
   assert.equal(entry.params.get("tag"), "Google");
   assert.equal(entry.params.get("force-policy"), "OutSide");
+});
+
+test("isAuditedConfigName 接受历史 sample 和 dated lite 配置", () => {
+  assert.equal(isAuditedConfigName("Sample_v1.5.3.conf"), true);
+  assert.equal(isAuditedConfigName("QuantumultX-Lite-20260528.conf"), true);
+  assert.equal(isAuditedConfigName("QuantumultX-Lite.conf"), false);
 });
 
 test("buildAuditReport 对健康样例返回零错误", async () => {

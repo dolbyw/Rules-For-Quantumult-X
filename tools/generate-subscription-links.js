@@ -5,7 +5,8 @@ const path = require("path");
 const crypto = require("crypto");
 
 const README_PATH = path.join(__dirname, "..", "README.md");
-const SAMPLE_PATH = path.join(__dirname, "..", "Sample_v1.5.3.conf");
+const CONFIG_FILE_NAME = "QuantumultX-Lite-20260528.conf";
+const CONFIG_PATH = path.join(__dirname, "..", CONFIG_FILE_NAME);
 const START_HEADING = "## 一键订阅链接";
 const END_HEADING = "## 推荐导入顺序";
 const DEFAULT_REPO = "dolbyw/Rules-For-Quantumult-X";
@@ -59,7 +60,7 @@ function resolveRepo() {
   return DEFAULT_REPO;
 }
 
-function buildGeneratedBlock(sampleContent, { repo = resolveRepo(), branch = DEFAULT_BRANCH } = {}) {
+function buildGeneratedBlock(sampleContent, { repo = resolveRepo(), branch = DEFAULT_BRANCH, configFileName = CONFIG_FILE_NAME } = {}) {
   const sampleSha = crypto.createHash("sha256").update(sampleContent).digest("hex").slice(0, 12);
 
   const sections = parseSections(sampleContent);
@@ -81,8 +82,8 @@ function buildGeneratedBlock(sampleContent, { repo = resolveRepo(), branch = DEF
   }
 
   const encodedPayload = encodeURIComponent(JSON.stringify(resourcePayload));
-  const rawConfigUrl = `https://raw.githubusercontent.com/${repo}/${branch}/Sample_v1.5.3.conf`;
-  const jsdelivrConfigUrl = `https://cdn.jsdelivr.net/gh/${repo}@${branch}/Sample_v1.5.3.conf`;
+  const rawConfigUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${configFileName}`;
+  const jsdelivrConfigUrl = `https://cdn.jsdelivr.net/gh/${repo}@${branch}/${configFileName}`;
 
   const schemeAdd = `quantumult-x:///add-resource?remote-resource=${encodedPayload}`;
   const schemeUpdate = `quantumult-x:///update-configuration?remote-resource=${encodedPayload}`;
@@ -94,7 +95,7 @@ function buildGeneratedBlock(sampleContent, { repo = resolveRepo(), branch = DEF
     "",
     "<!-- AUTO_SUBSCRIPTION_LINKS:START -->",
     "> 自动生成：请勿手改本区块，运行 `node tools/generate-subscription-links.js` 更新。",
-    `> 基准配置：\`Sample_v1.5.3.conf\`，内容哈希：\`${sampleSha}\`。`,
+    `> 基准配置：\`${configFileName}\`，内容哈希：\`${sampleSha}\`。`,
     "",
     "### 配置订阅（建议）",
     "",
@@ -157,7 +158,7 @@ function createReadmeWithSubscriptionLinks(readmeContent, sampleContent, options
 function main() {
   const checkMode = process.argv.includes("--check");
   const readmeContent = fs.readFileSync(README_PATH, "utf8");
-  const sampleContent = fs.readFileSync(SAMPLE_PATH, "utf8");
+  const sampleContent = fs.readFileSync(CONFIG_PATH, "utf8");
   const nextReadme = createReadmeWithSubscriptionLinks(readmeContent, sampleContent);
 
   if (checkMode) {
@@ -185,6 +186,8 @@ if (require.main === module) {
 
 module.exports = {
   buildGeneratedBlock,
+  CONFIG_FILE_NAME,
+  CONFIG_PATH,
   createReadmeWithSubscriptionLinks,
   getResourceLines,
   parseSections,

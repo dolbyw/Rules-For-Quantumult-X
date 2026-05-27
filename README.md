@@ -2,15 +2,16 @@
 
 面向 Quantumult X 的配置仓库，核心目标是：
 
-- 提供可直接导入的示例配置与订阅入口；
+- 提供可直接导入的轻量配置与订阅入口；
 - 复用上游规则源，不在本仓库自建 `.list` 分流规则；
 - 通过 GitHub Actions 自动校验与自动更新，降低维护成本。
 
 ## 快速使用
 
 1. 复制下方“一键订阅链接”中的配置链接或 QuanX 导入链接。  
-2. 在 Quantumult X 中导入后，按需启用 `filter_remote` / `rewrite_remote`。  
-3. 若导入 Surge/Clash 规则，确保已设置 `resource_parser_url`。  
+2. 在 Quantumult X 中导入后，先替换 `[server_remote]` 中的节点订阅示例。  
+3. 默认配置仅启用分流，不启用 MITM、重写、解锁脚本或定时任务。  
+4. 若导入 Surge/Clash 规则，确保已设置 `resource_parser_url`。  
 
 推荐解析器（直接复用上游，不自建轮子）：
 
@@ -29,18 +30,18 @@ resource_parser_url = https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/mas
 
 <!-- AUTO_SUBSCRIPTION_LINKS:START -->
 > 自动生成：请勿手改本区块，运行 `node tools/generate-subscription-links.js` 更新。
-> 基准配置：`Sample_v1.5.3.conf`，内容哈希：`fb8c15192512`。
+> 基准配置：`QuantumultX-Lite-20260528.conf`，内容哈希：`10a60bfd3bde`。
 
 ### 配置订阅（建议）
 
 ```text
-https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Sample_v1.5.3.conf
+https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/QuantumultX-Lite-20260528.conf
 ```
 
 备用 CDN：
 
 ```text
-https://cdn.jsdelivr.net/gh/dolbyw/Rules-For-Quantumult-X@main/Sample_v1.5.3.conf
+https://cdn.jsdelivr.net/gh/dolbyw/Rules-For-Quantumult-X@main/QuantumultX-Lite-20260528.conf
 ```
 
 ### QuanX 一键导入（通用链接）
@@ -48,13 +49,13 @@ https://cdn.jsdelivr.net/gh/dolbyw/Rules-For-Quantumult-X@main/Sample_v1.5.3.con
 追加导入（保留现有资源）：
 
 ```text
-https://quantumult.app/x/open-app/add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+https://quantumult.app/x/open-app/add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FOpenAI%2FOpenAI.list%2C%20tag%3DOpenAI%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FClaude%2FClaude.list%2C%20tag%3DClaude%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGemini%2FGemini.list%2C%20tag%3DGemini%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20force-policy%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGitHub%2FGitHub.list%2C%20tag%3DGitHub%2C%20force-policy%3DGitHub%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FTelegram%2FTelegram.list%2C%20tag%3DTelegram%2C%20force-policy%3DTelegram%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20force-policy%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FYouTube%2FYouTube.list%2C%20tag%3DYouTube%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3DApple%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%7D
 ```
 
 覆盖导入（替换现有资源）：
 
 ```text
-https://quantumult.app/x/open-app/update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+https://quantumult.app/x/open-app/update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FOpenAI%2FOpenAI.list%2C%20tag%3DOpenAI%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FClaude%2FClaude.list%2C%20tag%3DClaude%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGemini%2FGemini.list%2C%20tag%3DGemini%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20force-policy%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGitHub%2FGitHub.list%2C%20tag%3DGitHub%2C%20force-policy%3DGitHub%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FTelegram%2FTelegram.list%2C%20tag%3DTelegram%2C%20force-policy%3DTelegram%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20force-policy%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FYouTube%2FYouTube.list%2C%20tag%3DYouTube%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3DApple%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%7D
 ```
 
 ### QuanX URL Scheme（App 直开）
@@ -62,28 +63,34 @@ https://quantumult.app/x/open-app/update-configuration?remote-resource=%7B%22fil
 追加导入：
 
 ```text
-quantumult-x:///add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+quantumult-x:///add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FOpenAI%2FOpenAI.list%2C%20tag%3DOpenAI%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FClaude%2FClaude.list%2C%20tag%3DClaude%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGemini%2FGemini.list%2C%20tag%3DGemini%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20force-policy%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGitHub%2FGitHub.list%2C%20tag%3DGitHub%2C%20force-policy%3DGitHub%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FTelegram%2FTelegram.list%2C%20tag%3DTelegram%2C%20force-policy%3DTelegram%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20force-policy%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FYouTube%2FYouTube.list%2C%20tag%3DYouTube%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3DApple%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%7D
 ```
 
 覆盖导入：
 
 ```text
-quantumult-x:///update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+quantumult-x:///update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20force-policy%3Dreject%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FOpenAI%2FOpenAI.list%2C%20tag%3DOpenAI%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FClaude%2FClaude.list%2C%20tag%3DClaude%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGemini%2FGemini.list%2C%20tag%3DGemini%2C%20force-policy%3DAI%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20force-policy%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGitHub%2FGitHub.list%2C%20tag%3DGitHub%2C%20force-policy%3DGitHub%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FTelegram%2FTelegram.list%2C%20tag%3DTelegram%2C%20force-policy%3DTelegram%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20force-policy%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FYouTube%2FYouTube.list%2C%20tag%3DYouTube%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DForeignMedia%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3DApple%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%7D
 ```
 
 <!-- AUTO_SUBSCRIPTION_LINKS:END -->
 ## 推荐导入顺序
 
+推荐直接使用 `QuantumultX-Lite-20260528.conf`。下面是该配置内置的远程分流顺序：
+
 ```ini
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Hijacking/Hijacking.list, tag=Hijacking, force-policy=reject, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Advertising.list, tag=Advertising, force-policy=reject, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=OpenAI, force-policy=OutSide, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Google/Google.list, tag=Google, force-policy=OutSide, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GitHub/GitHub.list, tag=GitHub, force-policy=OutSide, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=OutSide, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GlobalMedia/GlobalMedia.list, tag=ForeignMedia, force-policy=OutSide, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=OpenAI, force-policy=AI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Claude/Claude.list, tag=Claude, force-policy=AI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Gemini/Gemini.list, tag=Gemini, force-policy=AI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Google/Google.list, tag=Google, force-policy=Google, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GitHub/GitHub.list, tag=GitHub, force-policy=GitHub, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=Telegram, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Microsoft/Microsoft.list, tag=Microsoft, force-policy=Microsoft, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/YouTube/YouTube.list, tag=YouTube, force-policy=ForeignMedia, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GlobalMedia/GlobalMedia.list, tag=ForeignMedia, force-policy=ForeignMedia, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/ChinaMedia/ChinaMedia.list, tag=DomesticMedia, force-policy=direct, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple, force-policy=direct, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple, force-policy=Apple, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/ChinaMax/ChinaMax.list, tag=Domestic, force-policy=direct, enabled=true
 ```
 
@@ -99,17 +106,18 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | 路径 | 作用 |
 |---|---|
 | .github/workflows/ | 自动化工作流（测试、校验、自动更新）。 |
-| Rewrite/ | 重写规则（去广告、功能增强、服务类、解锁类）。 |
+| QuantumultX-Lite-*.conf | 当前推荐订阅配置，仅启用分流。 |
+| Rewrite/ | 可选重写规则（默认配置不启用）。 |
 | Rules/ | 规则说明占位目录（历史结构保留）。 |
-| Scripts/ | Quantumult X 脚本资源。 |
-| Sample_v*.conf | 示例配置（按版本保留）。 |
+| Scripts/ | 可选脚本资源（默认配置不启用）。 |
+| Sample_v*.conf | 历史示例配置（不作为推荐订阅）。 |
 | tools/ | 维护工具（生成 README、校验规则、审计配置）。 |
 | README.md | 远程仓库主说明（本文件）。 |
 | README.local.md | 本地开发文档（已忽略，不提交远程）。 |
 
 ## 文件说明索引
 
-本节按当前工作区文件树生成，覆盖 222 个文件。
+本节按当前工作区文件树生成，覆盖 142 个文件。
 
 | 文件 | 说明 |
 |---|---|
@@ -120,6 +128,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `.gitignore` | 项目文件。 |
 | `CODE_OF_CONDUCT.md` | 文档。 |
 | `LICENSE` | 开源许可证。 |
+| `QuantumultX-Lite-20260528.conf` | 项目文件。 |
 | `README.md` | 项目主说明。 |
 | `Rewrite/4limbo.adblock` | 重写规则资源。 |
 | `Rewrite/AdBlock/Amap.adblock` | 重写规则资源。 |
@@ -159,27 +168,6 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `Rewrite/Services/Google/GoogleRecaptcha.js` | 重写规则资源。 |
 | `Rewrite/Services/Google/GoogleRecaptcha.min.js` | 重写规则资源。 |
 | `Rewrite/Services/Google/GoogleRecaptcha.rewrite` | 重写规则资源。 |
-| `Rewrite/Unlock/AliyunDrive.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/All.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Boohee.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/ByButter.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/ClarityPro.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Emby.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/FlightRadar24.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Foodie.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/GoodBility.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Grow.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/MoneyThings.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/NewBing.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/NiceGram.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Notability.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/PicsArt.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Pillow.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/RevenueCat.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/Spotify.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/ToToWallet.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/WPS.unlock` | 重写规则资源。 |
-| `Rewrite/Unlock/iTunes.unlock` | 重写规则资源。 |
 | `Rules/Media/Readme.md` | 规则说明文档。 |
 | `Sample_v1.0.9.conf` | 示例配置。 |
 | `Sample_v1.1.0.conf` | 示例配置。 |
@@ -257,67 +245,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `Scripts/AdBlock/Zhihu/Zhihu.js` | 脚本资源。 |
 | `Scripts/AdBlock/Zhihu/Zhihu.min.js` | 脚本资源。 |
 | `Scripts/AdBlock/Zhihu/Zhihu_dep.js` | 脚本资源。 |
-| `Scripts/Other/ColorWeather.js` | 脚本资源。 |
-| `Scripts/Other/Dqsj.js` | 脚本资源。 |
 | `Scripts/Readme.md` | 脚本资源。 |
-| `Scripts/Unlock/BdCloud.js` | 脚本资源。 |
-| `Scripts/Unlock/BiliBili.proto.js` | 脚本资源。 |
-| `Scripts/Unlock/BiliBili.proto.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Boohee.js` | 脚本资源。 |
-| `Scripts/Unlock/Boohee.min.js` | 脚本资源。 |
-| `Scripts/Unlock/ByButter.js` | 脚本资源。 |
-| `Scripts/Unlock/ByButter.min.js` | 脚本资源。 |
-| `Scripts/Unlock/CamScanner.js` | 脚本资源。 |
-| `Scripts/Unlock/ClarityPro.js` | 脚本资源。 |
-| `Scripts/Unlock/ClarityPro.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Emby.js` | 脚本资源。 |
-| `Scripts/Unlock/FlightRadar24.js` | 脚本资源。 |
-| `Scripts/Unlock/FlightRadar24.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Foodie.js` | 脚本资源。 |
-| `Scripts/Unlock/Foodie.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Goodbility.js` | 脚本资源。 |
-| `Scripts/Unlock/Goodbility.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Grow.js` | 脚本资源。 |
-| `Scripts/Unlock/Grow.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Keep.js` | 脚本资源。 |
-| `Scripts/Unlock/Keep.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Kuwo.js` | 脚本资源。 |
-| `Scripts/Unlock/MIX.js` | 脚本资源。 |
-| `Scripts/Unlock/MoneyThings.js` | 脚本资源。 |
-| `Scripts/Unlock/MoneyThings.min.js` | 脚本资源。 |
-| `Scripts/Unlock/MoveRevenueCat.js` | 脚本资源。 |
-| `Scripts/Unlock/MoveRevenueCat.min.js` | 脚本资源。 |
-| `Scripts/Unlock/NiceGram.json` | 脚本资源。 |
-| `Scripts/Unlock/Nicegram.js` | 脚本资源。 |
-| `Scripts/Unlock/Nicegram.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Notability.js` | 脚本资源。 |
-| `Scripts/Unlock/Notability.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Notability.old.js` | 脚本资源。 |
-| `Scripts/Unlock/PicsArt.js` | 脚本资源。 |
-| `Scripts/Unlock/PicsArt.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Pillow.js` | 脚本资源。 |
-| `Scripts/Unlock/Pillow.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Polarr.js` | 脚本资源。 |
-| `Scripts/Unlock/RevenueCat.RmHeaders.js` | 脚本资源。 |
-| `Scripts/Unlock/RevenueCat.js` | 脚本资源。 |
-| `Scripts/Unlock/RevenueCat.min.js` | 脚本资源。 |
-| `Scripts/Unlock/Spotify.js` | 脚本资源。 |
-| `Scripts/Unlock/Spotify.min.js` | 脚本资源。 |
-| `Scripts/Unlock/ToToWallet.js` | 脚本资源。 |
-| `Scripts/Unlock/ToToWallet.min.js` | 脚本资源。 |
-| `Scripts/Unlock/VSCO.js` | 脚本资源。 |
-| `Scripts/Unlock/VivaVideo.js` | 脚本资源。 |
-| `Scripts/Unlock/WPS.docer-power.js` | 脚本资源。 |
-| `Scripts/Unlock/WPS.docer.js` | 脚本资源。 |
-| `Scripts/Unlock/WPS.js` | 脚本资源。 |
-| `Scripts/Unlock/WPS.local.js` | 脚本资源。 |
-| `Scripts/Unlock/WPS.min.js` | 脚本资源。 |
-| `Scripts/Unlock/WechatUrlUnlock.js` | 脚本资源。 |
-| `Scripts/Unlock/Wnyd.js` | 脚本资源。 |
-| `Scripts/Unlock/Xjsp.js` | 脚本资源。 |
-| `Scripts/Unlock/Zymh.js` | 脚本资源。 |
-| `Scripts/Unlock/iTunes.js` | 脚本资源。 |
-| `Scripts/Unlock/iTunes.min.js` | 脚本资源。 |
 | `images/logo.png` | 静态资源。 |
 | `tools/audit-sample-configs.js` | 维护脚本。 |
 | `tools/audit-sample-configs.test.js` | 维护脚本。 |
