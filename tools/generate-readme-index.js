@@ -39,6 +39,9 @@ function describeFile(filePath) {
   if (filePath.startsWith("tools/")) {
     return "维护脚本。";
   }
+  if (filePath.startsWith("config/")) {
+    return "配置生成清单。";
+  }
   if (filePath.startsWith("docs/")) {
     return "维护文档。";
   }
@@ -56,6 +59,9 @@ function describeFile(filePath) {
   }
   if (filePath.startsWith("Sample_") && ext === ".conf") {
     return "示例配置。";
+  }
+  if (/^QuantumultX-Lite(?:-\d{8})?\.conf$/.test(filePath)) {
+    return "Quantumult X 轻量分流配置。";
   }
   if (filePath === "README.md") {
     return "项目主说明。";

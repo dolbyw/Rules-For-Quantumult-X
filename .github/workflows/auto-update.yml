@@ -21,20 +21,29 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Generate lite configuration
+        run: node tools/generate-lite-config.js
+
+      - name: Check generated configuration is synced
+        run: node tools/generate-lite-config.js --check
+
       - name: Run unit tests
         run: node --test tools/*.test.js
+
+      - name: Validate repository
+        run: |
+          node tools/validate-qx-rules.js --strict
+          node tools/audit-sample-configs.js --strict
+          node tools/check-maintenance.js
+
+      - name: Probe generated remote resources
+        run: node tools/audit-sample-configs.js --strict --path QuantumultX-Lite.conf --probe-remote --timeout-ms 15000
 
       - name: Regenerate README subscription links
         run: node tools/generate-subscription-links.js
 
       - name: Regenerate README file index
         run: node tools/generate-readme-index.js
-
-      - name: Validate repository
-        run: |
-          node tools/validate-qx-rules.js --strict
-          node tools/audit-sample-configs.js --strict --probe-remote --timeout-ms 15000
-          node tools/check-maintenance.js
 
       - name: Commit updates
         run: |
@@ -45,9 +54,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
+          git add QuantumultX-Lite.conf
           git add QuantumultX-Lite-*.conf
           git add Sample_v*.conf
           git add .github/workflows
+          git add config
           git add tools
           git commit -m "chore: auto refresh quanx subscriptions and audits"
           git push

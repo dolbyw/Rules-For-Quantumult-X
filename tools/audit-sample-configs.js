@@ -75,7 +75,7 @@ function collectSampleConfigs(targetPath) {
 }
 
 function isAuditedConfigName(fileName) {
-  return /^Sample_.*\.conf$/i.test(fileName) || /^QuantumultX-Lite-\d{8}\.conf$/i.test(fileName);
+  return /^Sample_.*\.conf$/i.test(fileName) || /^QuantumultX-Lite(?:-\d{8})?\.conf$/i.test(fileName);
 }
 
 function splitSections(content) {
@@ -318,6 +318,7 @@ async function probeUrls(urls, timeoutMs) {
 
 async function buildAuditReport(options) {
   const files = collectSampleConfigs(options.targetPath);
+  const targetStat = fs.statSync(options.targetPath);
   const issues = [];
   const urlCandidates = new Set();
 
@@ -368,8 +369,10 @@ async function buildAuditReport(options) {
     }
   }
 
-  const internalScriptUrls = checkInternalScriptReferences(process.cwd(), issues);
-  internalScriptUrls.forEach((url) => urlCandidates.add(url));
+  if (targetStat.isDirectory()) {
+    const internalScriptUrls = checkInternalScriptReferences(process.cwd(), issues);
+    internalScriptUrls.forEach((url) => urlCandidates.add(url));
+  }
 
   const probes = [];
   if (options.probeRemote) {

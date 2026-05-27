@@ -5,7 +5,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const README_PATH = path.join(__dirname, "..", "README.md");
-const CONFIG_FILE_NAME = "QuantumultX-Lite-20260528.conf";
+const CONFIG_FILE_NAME = "QuantumultX-Lite.conf";
 const CONFIG_PATH = path.join(__dirname, "..", CONFIG_FILE_NAME);
 const START_HEADING = "## 一键订阅链接";
 const END_HEADING = "## 推荐导入顺序";

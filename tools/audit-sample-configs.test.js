@@ -26,10 +26,10 @@ test("parseRemoteEntry 解析 URL 与参数", () => {
   assert.equal(entry.params.get("force-policy"), "OutSide");
 });
 
-test("isAuditedConfigName 接受历史 sample 和 dated lite 配置", () => {
+test("isAuditedConfigName 接受历史 sample、stable lite 和 dated lite 配置", () => {
   assert.equal(isAuditedConfigName("Sample_v1.5.3.conf"), true);
   assert.equal(isAuditedConfigName("QuantumultX-Lite-20260528.conf"), true);
-  assert.equal(isAuditedConfigName("QuantumultX-Lite.conf"), false);
+  assert.equal(isAuditedConfigName("QuantumultX-Lite.conf"), true);
 });
 
 test("buildAuditReport 对健康样例返回零错误", async () => {
