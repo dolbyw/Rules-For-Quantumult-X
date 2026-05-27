@@ -104,9 +104,18 @@
 
 执行状态：已在 2026-05-27 建立 `.github/workflows/validate.yml`，在 push 和 pull request 中运行 `node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js`、`node tools/validate-qx-rules.js --strict` 和 `node tools/check-maintenance.js`。维护检查会阻断生产资源中的旧维护链接，并确认 README 文件说明索引与已纳入版本管理的文件一致。订阅索引生成尚未启用，保留为后续自动化扩展项。
 
+### 第六阶段：上游规则源迁移
+
+- 删除本仓库 `Rules/` 与 `BackCN/` 下自建 `.list` 规则文件。
+- README 与示例配置统一改为上游规则源引用。
+- 默认使用 `blackmatrix7/ios_rule_script` 的 `rule/QuantumultX` 目录。
+- `Loyalsoldier/surge-rules` 仅作为 Surge 生态参考源，不作为 QuanX 默认导入入口。
+
+执行状态：已在 2026-05-27 执行，删除 95 个本地 `.list` 文件，README 与 `Sample_v*.conf` 的 `[filter_remote]` 已切换为 `blackmatrix7` QuantumultX 规则路径。本仓库保留重写、脚本和示例配置，不再维护自建分流规则文件。
+
 ## 风险控制
 
-- 不批量自动删除规则。
+- 不在本仓库新增自建分流规则文件。
 - 不批量替换脚本 URL，除非已确认目标文件存在且可被 Quantumult X 访问。
 - 不把解锁类脚本作为默认推荐资源。
 - 每个阶段都先跑校验器和 README 链接搜索，再提交。
@@ -123,4 +132,4 @@ git status --short
 
 ## 下一步建议
 
-先处理版本管理边界和文档索引，然后选择一个高价值目录做试点，例如 `Rules/Services/OpenAI.list`、`Rules/Services/Google.list`、`Rewrite/AdBlock/Zhihu.adblock`。试点跑通后，再扩展到媒体、广告和解锁资源。
+后续重点放在上游规则映射与可访问性监控，优先关注 OpenAI、Google、GitHub、Telegram、Apple、Microsoft 等关键规则入口，同时按需维护重写和脚本资源。
