@@ -1,7 +1,11 @@
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const os = require("node:os");
+const path = require("node:path");
 const test = require("node:test");
 const {
   checkReadmeIndex,
+  filterExistingFiles,
   findLegacyLinks,
   parseReadmeIndex,
 } = require("./check-maintenance");
@@ -55,4 +59,11 @@ test("findLegacyLinks blocks production legacy URLs but ignores fixtures and arc
   assert.equal(links.length, 1);
   assert.equal(links[0].file, "Scripts/AdBlock/Wechat/Wechat.js");
   assert.equal(links[0].label, "旧 jsDelivr 仓库链接");
+});
+
+test("filterExistingFiles 过滤已从工作区删除的跟踪文件", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "maintenance-"));
+  fs.writeFileSync(path.join(tempDir, "README.md"), "");
+
+  assert.deepEqual(filterExistingFiles(tempDir, ["README.md", "Sample_v1.0.9.conf"]), ["README.md"]);
 });

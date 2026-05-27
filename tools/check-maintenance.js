@@ -32,11 +32,23 @@ function getTrackedFiles(rootDir) {
     encoding: "utf8",
     },
   );
-  return output
-    .split(/\r?\n/)
-    .map((line) => line.trim())
+  return filterExistingFiles(
+    rootDir,
+    output
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .filter((file) => !file.startsWith("docs/"))
+      .filter((file) => file !== "README.local.md"),
+  ).sort();
+}
+
+function filterExistingFiles(rootDir, files) {
+  const fileList = Array.isArray(files) ? files : files.split(/\r?\n/);
+  return fileList
+    .map((line) => String(line).trim())
     .filter(Boolean)
-    .sort();
+    .filter((file) => fs.existsSync(path.join(rootDir, file)));
 }
 
 function readTrackedTextFiles(rootDir, trackedFiles) {
@@ -194,6 +206,7 @@ if (require.main === module) {
 module.exports = {
   buildMaintenanceReport,
   checkReadmeIndex,
+  filterExistingFiles,
   findLegacyLinks,
   formatMaintenanceReport,
   getTrackedFiles,

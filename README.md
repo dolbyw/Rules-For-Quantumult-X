@@ -30,7 +30,7 @@ resource_parser_url = https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/mas
 
 <!-- AUTO_SUBSCRIPTION_LINKS:START -->
 > 自动生成：请勿手改本区块，运行 `node tools/generate-subscription-links.js` 更新。
-> 基准配置：`QuantumultX-Lite.conf`，内容哈希：`dd771fa6d416`。
+> 基准配置：`QuantumultX-Lite.conf`，内容哈希：`434f4c434a54`。
 
 ### 配置订阅（建议）
 
@@ -119,14 +119,13 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | Rules/Generated/ | Actions 自动生成的 Quantumult X 规则。 |
 | Rules/ | 规则说明占位目录（历史结构保留）。 |
 | Scripts/ | 可选脚本资源（默认配置不启用）。 |
-| Sample_v*.conf | 历史示例配置（不作为推荐订阅）。 |
 | tools/ | 维护工具（生成 README、校验规则、审计配置）。 |
 | README.md | 远程仓库主说明（本文件）。 |
 | README.local.md | 本地开发文档（已忽略，不提交远程）。 |
 
 ## 文件说明索引
 
-本节按当前工作区文件树生成，覆盖 152 个文件。
+本节按当前工作区文件树生成，覆盖 146 个文件。
 
 | 文件 | 说明 |
 |---|---|
@@ -182,11 +181,6 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `Rules/Generated/Loyalsoldier/GFW.list` | 自动生成的 Quantumult X 规则。 |
 | `Rules/Generated/Loyalsoldier/Private.list` | 自动生成的 Quantumult X 规则。 |
 | `Rules/Media/Readme.md` | 规则说明文档。 |
-| `Sample_v1.0.9.conf` | 示例配置。 |
-| `Sample_v1.1.0.conf` | 示例配置。 |
-| `Sample_v1.4.0.conf` | 示例配置。 |
-| `Sample_v1.4.2.conf` | 示例配置。 |
-| `Sample_v1.5.3.conf` | 示例配置。 |
 | `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.js` | 脚本资源。 |
 | `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.min.js` | 脚本资源。 |
 | `Scripts/AdBlock/BiliBili/BiliBili.js` | 脚本资源。 |
@@ -261,7 +255,6 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `Scripts/Readme.md` | 脚本资源。 |
 | `config/lite-profile.js` | 配置生成清单。 |
 | `config/loyalsoldier-sources.js` | 配置生成清单。 |
-| `images/logo.png` | 静态资源。 |
 | `tools/audit-sample-configs.js` | 维护脚本。 |
 | `tools/audit-sample-configs.test.js` | 维护脚本。 |
 | `tools/check-maintenance.js` | 维护脚本。 |

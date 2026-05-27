@@ -22,20 +22,11 @@
 ![GitHub](https://img.shields.io/github/license/sve1r/Rules-For-Quantumult-X?style=for-the-badge)
 ![Twitter URL](https://img.shields.io/twitter/url?label=Twitter&logo=Twitter&color=e85a71&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2FSveirH)
 
-<!-- PROJECT LOGO -->
-<br />
+## Scripts Part For Quantumult X
 
-<p align="center">
-  <a href="https://github.com/dolbyw/Rules-For-Quantumult-X/">
-    <img src="../images/logo.png" alt="Logo" width="160" height="160">
-  </a>
+本仓库内内容用于 Quantumult X 中，效果根据自己需求进行挑选。
 
-  <h3 align="center">Scripts Part For Quantumult X</h3>
-
-  本仓库内内容用于 Quantumult X 中，效果根据自己需求进行挑选。
-
-  **仓库内容来源于网络中 如有侵权或未标明出处请留issue**
-</p>
+**仓库内容来源于网络中 如有侵权或未标明出处请留issue**
 
 
 ## 目录
@@ -132,5 +123,4 @@
 - 此处的文字仅用于说明，条款以LICENSE文件中的内容为准。
 
 - 请在遵守当地相关法律法规的前提下使用本项目，我们不为使用此项目内容出现问题负任何责任。
-
 
