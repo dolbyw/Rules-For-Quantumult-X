@@ -1,0 +1,4 @@
+// ASN resource with inline comments and external force-policy usage
+IP-ASN,140731 // TOHU Public Internet
+IP-ASN,4134
+host-suffix,example.com

@@ -592,10 +592,10 @@ Rules-For-Quantumult-X
 
 | 文件 | 说明 |
 |---|---|
-| `tools/fixtures/qx-validator/invalid.list` | 校验 CLI 使用的测试样例文件。 |
-| `tools/fixtures/qx-validator/legacy.md` | 校验 CLI 使用的测试样例文件。 |
-| `tools/fixtures/qx-validator/sample.conf` | 校验 CLI 使用的测试样例文件。 |
-| `tools/fixtures/qx-validator/valid.list` | 校验 CLI 使用的测试样例文件。 |
+| `tools/fixtures/qx-validator/compatible-format/policyless-asn.list` | 兼容格式样例，覆盖无显式策略规则、ASN 规则和双斜杠注释。 |
+| `tools/fixtures/qx-validator/duplicate/duplicate.list` | 重复规则样例，用于验证重复检测。 |
+| `tools/fixtures/qx-validator/legacy-link/legacy.md` | 旧链接样例，用于验证历史域名和维护者标识检查。 |
+| `tools/fixtures/qx-validator/real-error/invalid.list` | 真实格式错误样例，用于验证 strict 模式仍能拦截错误。 |
 | `tools/validate-qx-rules.js` | 只读 Quantumult X 规则校验 CLI，用于扫描格式问题、重复规则和旧链接。 |
 | `tools/validate-qx-rules.test.js` | 校验 CLI 的 Node.js 内置测试用例。 |
 

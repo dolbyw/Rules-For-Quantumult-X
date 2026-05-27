@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const SUPPORTED_EXTENSIONS = new Set([".list", ".adblock", ".unlock", ".conf", ".md"]);
-const EXCLUDED_DIRS = new Set([".git", "node_modules", ".github"]);
+const EXCLUDED_DIRS = new Set([".git", "node_modules", ".github", "fixtures"]);
 const RULE_TYPES = new Set([
   "host",
   "host-suffix",
@@ -94,7 +94,11 @@ function addIssue(issues, severity, file, line, message) {
 
 function isIgnorableLine(line) {
   const trimmed = line.trim();
-  return trimmed === "" || trimmed.startsWith("#") || trimmed.startsWith(";");
+  return trimmed === "" || trimmed.startsWith("#") || trimmed.startsWith(";") || trimmed.startsWith("//");
+}
+
+function stripListComment(line) {
+  return line.replace(/\s+\/\/.*$/, "").trim();
 }
 
 function checkLegacyLinks(lines, relativeFile, issues, seenLegacyLabels) {
@@ -123,14 +127,19 @@ function checkListFile(lines, relativeFile, issues) {
       return;
     }
 
-    const normalized = line.trim().replace(/\s+/g, " ").toLowerCase();
+    const ruleLine = stripListComment(line);
+    if (ruleLine === "") {
+      return;
+    }
+
+    const normalized = ruleLine.replace(/\s+/g, " ").toLowerCase();
     if (seen.has(normalized)) {
       addIssue(issues, "warning", relativeFile, index + 1, `重复规则，首次出现于第 ${seen.get(normalized)} 行`);
     } else {
       seen.set(normalized, index + 1);
     }
 
-    const parts = line.split(",").map((part) => part.trim());
+    const parts = ruleLine.split(",").map((part) => part.trim());
     const type = parts[0].toLowerCase();
     if (!RULE_TYPES.has(type)) {
       addIssue(issues, "warning", relativeFile, index + 1, `未知规则类型 ${parts[0]}`);
@@ -144,8 +153,13 @@ function checkListFile(lines, relativeFile, issues) {
       return;
     }
 
-    if (parts.length < 3 || parts[1] === "" || parts[2] === "") {
-      addIssue(issues, "error", relativeFile, index + 1, "规则字段不足，需要规则类型、匹配内容和策略名");
+    if (parts.length < 2 || parts[1] === "") {
+      addIssue(issues, "error", relativeFile, index + 1, "规则字段不足，需要规则类型和匹配内容");
+      return;
+    }
+
+    if (parts.length >= 3 && parts[2] === "") {
+      addIssue(issues, "error", relativeFile, index + 1, "规则策略名为空；省略策略时请不要保留空字段");
     }
   });
 }

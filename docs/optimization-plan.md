@@ -12,7 +12,7 @@
 
 ## 自动校验结果
 
-运行 `node tools/validate-qx-rules.js` 的摘要如下：
+初始运行 `node tools/validate-qx-rules.js` 的摘要如下：
 
 | 指标 | 数量 |
 |---|---:|
@@ -36,7 +36,7 @@
 1. 版本管理未闭合：先决定是否把当前 299 个未跟踪文件全部纳入仓库，或者只保留经验证的子集。未完成前，不建议发布 release 或接入自动化部署。
 2. 旧链接会误导用户导入不可控资源：历史示例配置和重写资源中大量引用旧域名、旧维护者路径和旧 CDN。应先替换文档推荐入口，再逐步替换规则内部脚本 URL。
 3. 解锁类脚本风险高：`Rewrite/Unlock/` 和 `Scripts/Unlock/` 涉及会员、订阅或功能解锁。应在 README 中保持风险提示，并在后续拆分为默认不推荐导入的高风险资源。
-4. 校验器需要适配真实规则格式：当前 753 个 error 不能直接视为全部真实错误。下一步应抽样检查 `Rules/Region/Global.list`、`Rules/Advertising/*.list`、媒体集合规则，确定是否需要支持更多合法语法或注释风格。
+4. 校验器需要适配真实规则格式：初始 753 个 error 不能直接视为全部真实错误。下一步应抽样检查 `Rules/Region/Global.list`、`Rules/Advertising/*.list`、媒体集合规则，确定是否需要支持更多合法语法或注释风格。
 
 ## 中优先级问题
 
@@ -69,6 +69,8 @@
 - 扩展或修正校验器支持的合法 Quantumult X 语法。
 - 将测试 fixture 分为真实错误、兼容格式、旧链接和重复规则四类。
 - 把误报降到可接受范围后再启用 `--strict`。
+
+执行状态：已在 2026-05-27 执行，抽样确认 `Rules/Region/ChinaASN.list` 使用 `IP-ASN,编号 // 注释` 这类可由远程 `force-policy` 绑定的兼容格式。校验器已支持无显式策略的非 `final` 规则、`.list` 中的 `//` 注释，并在全仓扫描时排除测试 fixtures。校准后 `node tools/validate-qx-rules.js --strict` 退出码为 0，扫描 161 个文件，错误 0，警告 311，信息 73。
 
 ### 第三阶段：旧链接替换
 

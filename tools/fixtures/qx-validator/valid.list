@@ -1,7 +1,0 @@
-# 正常规则
-host-suffix,google.com,Google
-host-keyword,youtube,Google
-ip-cidr,10.0.0.0/8,direct
-ip6-cidr,2001:db8::/32,direct
-geoip,cn,direct
-final,Final

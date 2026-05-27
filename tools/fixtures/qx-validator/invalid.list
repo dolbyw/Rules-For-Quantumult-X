@@ -1,5 +1,0 @@
-# 重复规则和字段不足
-host-suffix,steamstatic.com,Steam
-host-suffix,steamstatic.com,Steam
-host-suffix,missing-policy
-unknown-rule,example.com,Proxy
