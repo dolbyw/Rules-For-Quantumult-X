@@ -77,6 +77,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 - `force-policy`：强制覆盖远程规则文件内的策略名。
 - `enabled`：是否启用。
 - `update-interval`：自动更新时间，单位为秒。
+- `opt-parser`：启用资源解析器转换，导入 Surge/Clash 等非原生 Quantumult X 规则时需要开启。
 - `inserted-resource`：使用 Quantumult X 内置资源时会出现，如 `FILTER_REGION`、`FILTER_LAN`。
 
 ### 远程重写资源
@@ -138,6 +139,14 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/ChinaMedia/ChinaMedia.list, tag=DomesticMedia, force-policy=direct, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple, force-policy=direct, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/ChinaMax/ChinaMax.list, tag=Domestic, force-policy=direct, enabled=true
+```
+
+如果需要复用 `Loyalsoldier/surge-rules`，请通过解析器转换导入（默认不启用）：
+
+```ini
+; 需要 [general] 中已设置 resource_parser_url
+;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt, tag=Loyal-GFW, force-policy=OutSide, opt-parser=true, enabled=false
+;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt, tag=Loyal-Direct, force-policy=direct, opt-parser=true, enabled=false
 ```
 
 最后在 `[filter_local]` 中保留局域网和最终兜底：
