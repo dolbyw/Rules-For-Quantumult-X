@@ -256,6 +256,363 @@ Rules-For-Quantumult-X
 └── LICENSE
 ```
 
+## 文件说明索引
+
+本节按当前工作区文件树生成，覆盖 308 个文件。说明基于文件路径、命名和已知 Quantumult X 资源类型整理；标注“待验证”的条目需要在后续维护中结合真实接口和 Quantumult X 运行结果确认。
+
+### 根目录文件
+
+| 文件 | 说明 |
+|---|---|
+| `.gitignore` | Git 忽略规则，控制本地生成物和临时文件是否进入版本库。 |
+| `CODE_OF_CONDUCT.md` | 贡献者行为准则。 |
+| `LICENSE` | 项目开源许可证文本。 |
+| `README.md` | 仓库主说明文档，包含使用方式、目录说明、文件索引和维护建议。 |
+| `Sample_v1.0.9.conf` | Sample_v1.0.9 历史 Quantumult X 示例配置，保留用于兼容和迁移参考。 |
+| `Sample_v1.1.0.conf` | Sample_v1.1.0 历史 Quantumult X 示例配置，保留用于兼容和迁移参考。 |
+| `Sample_v1.4.0.conf` | Sample_v1.4.0 历史 Quantumult X 示例配置，保留用于兼容和迁移参考。 |
+| `Sample_v1.4.2.conf` | Sample_v1.4.2 历史 Quantumult X 示例配置，保留用于兼容和迁移参考。 |
+| `Sample_v1.5.3.conf` | Sample_v1.5.3 历史 Quantumult X 示例配置，保留用于兼容和迁移参考。 |
+
+### .github GitHub 配置
+
+| 文件 | 说明 |
+|---|---|
+| `.github/ISSUE_TEMPLATE/bug.md` | bug Markdown 文档。 |
+| `.github/ISSUE_TEMPLATE/需求请求.md` | 需求请求 Markdown 文档。 |
+
+### BackCN 回国规则
+
+| 文件 | 说明 |
+|---|---|
+| `BackCN/BackCN.list` | 回国或国内服务相关分流规则集合。 |
+
+### Rules 分流规则
+
+| 文件 | 说明 |
+|---|---|
+| `Rules/Advertising/AdReject.list` | AdReject 广告、劫持或反广告相关分流规则。 |
+| `Rules/Advertising/AdRule.list` | AdRule 广告、劫持或反广告相关分流规则。 |
+| `Rules/Advertising/antiAD-V4.list` | antiAD V4 广告、劫持或反广告相关分流规则。 |
+| `Rules/Advertising/Hijacking.list` | Hijacking 广告、劫持或反广告相关分流规则。 |
+| `Rules/Advertising/NormalApp/AppAdBlock.list` | AppAdBlock 普通应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/Bilibili.list` | Bilibili 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/iQiyi.list` | iQiyi 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/LeTV.list` | LeTV 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/MgTV.list` | MgTV 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/PPTV.list` | PPTV 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/Sohu.list` | Sohu 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/Youku.list` | Youku 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/Youtube.list` | Youtube 视频应用广告拦截分流规则。 |
+| `Rules/Advertising/VideoApp/YYeTs.list` | YYeTs 视频应用广告拦截分流规则。 |
+| `Rules/App/TomatoNovel.list` | TomatoNovel 应用专项分流规则。 |
+| `Rules/Functional/BlockHttpDNS.list` | BlockHttpDNS 功能性分流规则。 |
+| `Rules/Functional/SpeedTest.list` | SpeedTest 功能性分流规则。 |
+| `Rules/Games/Blizzzard.list` | Blizzzard 游戏平台或游戏服务分流规则。 |
+| `Rules/Games/Epic.list` | Epic 游戏平台或游戏服务分流规则。 |
+| `Rules/Games/GamesAll.list` | GamesAll 游戏平台或游戏服务分流规则。 |
+| `Rules/Games/Sony.list` | Sony 游戏平台或游戏服务分流规则。 |
+| `Rules/Games/Steam.list` | Steam 游戏平台或游戏服务分流规则。 |
+| `Rules/Games/WildRift.list` | WildRift 游戏平台或游戏服务分流规则。 |
+| `Rules/Media/Domestic/BiliBili.list` | BiliBili 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/Douyin.list` | Douyin 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/iQiyi.list` | iQiyi 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/LeTV.list` | LeTV 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/MgTV.list` | MgTV 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/Migu.list` | Migu 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/NeteaseMusic.list` | NeteaseMusic 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/TencentVideo.list` | TencentVideo 国内流媒体服务分流规则。 |
+| `Rules/Media/Domestic/Youku.list` | Youku 国内流媒体服务分流规则。 |
+| `Rules/Media/DomesticMedia.list` | 国内流媒体集合分流规则。 |
+| `Rules/Media/Foreign/AbemaTV.list` | AbemaTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/All4.list` | All4 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/AmazonPrime.list` | AmazonPrime 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/AppleMusic.list` | AppleMusic 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/AppleTV.list` | AppleTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Bahamut.list` | Bahamut 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/BBC.list` | BBC 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/CBS.list` | CBS 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/DAZN.list` | DAZN 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Deezer.list` | Deezer 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/DisneyPlus.list` | DisneyPlus 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Fox.list` | Fox 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/HBO.list` | HBO 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Hulu-Japan.list` | Hulu Japan 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Hulu.list` | Hulu 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/iQiyi-Intl.list` | iQiyi Intl 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/ITV.list` | ITV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Japonx.list` | Japonx 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/JOOX.list` | JOOX 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/KKBOX.list` | KKBOX 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/KKTV.list` | KKTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/LineTV.list` | LineTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/LiTV.list` | LiTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Netflix.list` | Netflix 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Pandora.list` | Pandora 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/PBS.list` | PBS 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Pornhub.list` | Pornhub 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Qobuz.list` | Qobuz 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/SoundCloud.list` | SoundCloud 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Spotify.list` | Spotify 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/TIDAL.list` | TIDAL 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Tiktok.list` | Tiktok 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/TVB.list` | TVB 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/Twitch.list` | Twitch 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/ViuTV.list` | ViuTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/WeTV.list` | WeTV 海外流媒体服务分流规则。 |
+| `Rules/Media/Foreign/YouTube.list` | YouTube 海外流媒体服务分流规则。 |
+| `Rules/Media/ForeignMedia.list` | 海外流媒体集合分流规则。 |
+| `Rules/Media/Readme.md` | 媒体规则子目录说明文档，当前仍需清理旧链接。 |
+| `Rules/Region/China.list` | China 地区、ASN 或 IP 段分流规则。 |
+| `Rules/Region/ChinaASN.list` | ChinaASN 地区、ASN 或 IP 段分流规则。 |
+| `Rules/Region/ChinaIP.list` | ChinaIP 地区、ASN 或 IP 段分流规则。 |
+| `Rules/Region/Global.list` | Global 地区、ASN 或 IP 段分流规则。 |
+| `Rules/Services/Amazon.list` | Amazon 网络服务分流规则。 |
+| `Rules/Services/Apple.list` | Apple 网络服务分流规则。 |
+| `Rules/Services/Cloudflare.list` | Cloudflare 网络服务分流规则。 |
+| `Rules/Services/Github.list` | Github 网络服务分流规则。 |
+| `Rules/Services/Google.list` | Google 网络服务分流规则。 |
+| `Rules/Services/Microsoft.list` | Microsoft 网络服务分流规则。 |
+| `Rules/Services/OpenAI.list` | OpenAI 网络服务分流规则。 |
+| `Rules/Services/Paypal.list` | Paypal 网络服务分流规则。 |
+| `Rules/Services/SNS/ClubHouse.list` | ClubHouse 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Discord.list` | Discord 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Facebook.list` | Facebook 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/KakaoTalk.list` | KakaoTalk 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Line.list` | Line 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/PotatoChat.list` | PotatoChat 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Telegram.list` | Telegram 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Tieba.list` | Tieba 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Twitter.list` | Twitter 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/WeChat.list` | WeChat 社交或即时通信服务分流规则。 |
+| `Rules/Services/SNS/Weibo.list` | Weibo 社交或即时通信服务分流规则。 |
+
+### Rewrite 重写资源
+
+| 文件 | 说明 |
+|---|---|
+| `Rewrite/4limbo.adblock` | 4limbo 来源的去广告重写规则集合，待验证语法兼容性。 |
+| `Rewrite/AdBlock/Amap.adblock` | Amap 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/BdMap.adblock` | BdMap 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/BiliBili.adblock` | BiliBili 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Cainiao.adblock` | Cainiao 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/ChinaUnicom.adblock` | ChinaUnicom 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Colorful.adblock` | Colorful 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/CoolApk.adblock` | CoolApk 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Didi.adblock` | Didi 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Keep.adblock` | Keep 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/NeteaseMusic.adblock` | NeteaseMusic 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/RedNote.adblock` | RedNote 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Smzdm.adblock` | Smzdm 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/StartUp.adblock` | StartUp 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/TieBa.adblock` | TieBa 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/TomatoNovel.adblock` | TomatoNovel 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/WebAdBlock.adblock` | WebAdBlock 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Weibo_New.adblock` | Weibo New 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Weibo.adblock` | Weibo 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Youtube.adblock` | Youtube 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/AdBlock/Zhihu.adblock` | Zhihu 去广告重写规则，通常需要配合脚本和 MITM 验证。 |
+| `Rewrite/Advertising.adblock` | 通用广告拦截重写规则集合。 |
+| `Rewrite/Functional/BlockAppUpgrade.conf` | BlockAppUpgrade 功能增强或拦截类重写配置。 |
+| `Rewrite/Functional/BlockHttpDNS.conf` | BlockHttpDNS 功能增强或拦截类重写配置。 |
+| `Rewrite/Functional/FakeSiteRedirect.conf` | FakeSiteRedirect 功能增强或拦截类重写配置。 |
+| `Rewrite/Functional/RedirectToHttps.conf` | RedirectToHttps 功能增强或拦截类重写配置。 |
+| `Rewrite/Rewrite_CornersHua.conf` | Rewrite CornersHua 上游重写规则集合，保留用于兼容参考。 |
+| `Rewrite/Rewrite_General.conf` | Rewrite General 上游重写规则集合，保留用于兼容参考。 |
+| `Rewrite/Rewrite_lhie1.conf` | Rewrite lhie1 上游重写规则集合，保留用于兼容参考。 |
+| `Rewrite/Rewrite_NodyDa.conf` | Rewrite NodyDa 上游重写规则集合，保留用于兼容参考。 |
+| `Rewrite/Services/Apple/Location/Readme.md` | Apple 位置服务相关重写说明文档。 |
+| `Rewrite/Services/Apple/TestFlight/README.md` | Apple TestFlight 重写资源说明文档。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightAccount.js` | Apple TestFlight 相关重写脚本，待验证当前接口兼容性。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.conf` | Apple TestFlight 下载或账号相关重写配置。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.js` | Apple TestFlight 相关重写脚本，待验证当前接口兼容性。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.js` | GoogleRecaptcha Google 服务相关重写资源，待验证当前可用性。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.min.js` | GoogleRecaptcha 压缩版 Google 服务相关重写资源，待验证当前可用性。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.rewrite` | GoogleRecaptcha Google 服务相关重写资源，待验证当前可用性。 |
+| `Rewrite/Unlock/AliyunDrive.unlock` | AliyunDrive 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/All.unlock` | All 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Boohee.unlock` | Boohee 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/ByButter.unlock` | ByButter 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/ClarityPro.unlock` | ClarityPro 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Emby.unlock` | Emby 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/FlightRadar24.unlock` | FlightRadar24 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Foodie.unlock` | Foodie 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/GoodBility.unlock` | GoodBility 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Grow.unlock` | Grow 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/iTunes.unlock` | iTunes 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/MoneyThings.unlock` | MoneyThings 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/NewBing.unlock` | NewBing 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/NiceGram.unlock` | NiceGram 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Notability.unlock` | Notability 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/PicsArt.unlock` | PicsArt 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Pillow.unlock` | Pillow 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/RevenueCat.unlock` | RevenueCat 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/Spotify.unlock` | Spotify 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/ToToWallet.unlock` | ToToWallet 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+| `Rewrite/Unlock/WPS.unlock` | WPS 解锁类重写规则，高风险资源，使用前需自行确认合规性和可用性。 |
+
+### Scripts 脚本资源
+
+| 文件 | 说明 |
+|---|---|
+| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.js` | BiliBili.AdBlock.response BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.min.js` | BiliBili.AdBlock.response 压缩版 BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.js` | BiliBili BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.min.js` | BiliBili 压缩版 BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.js` | BiliBili.protobuf BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.min.js` | BiliBili.protobuf 压缩版 BiliBili 去广告或 protobuf 处理脚本。 |
+| `Scripts/AdBlock/JD/jd_search_json.js` | jd search json 京东广告或启动页处理脚本，待验证用途。 |
+| `Scripts/AdBlock/JD/jx_startup.js` | jx startup 京东广告或启动页处理脚本，待验证用途。 |
+| `Scripts/AdBlock/Other/12306.js` | 12306 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Ahfs.js` | Ahfs 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/AliyunDrive.js` | AliyunDrive 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Amap.js` | Amap 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Amap.min.js` | Amap 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Amdc.js` | Amdc 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Amdc.min.js` | Amdc 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/BahamutAnimeAds.js` | BahamutAnimeAds 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/BahamutAnimeAds.min.js` | BahamutAnimeAds 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/BaiduMap.js` | BaiduMap 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/BaiduMap.min.js` | BaiduMap 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Cainiao.js` | Cainiao 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Cainiao.min.js` | Cainiao 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Colorful.js` | Colorful 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Colorful.min.js` | Colorful 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/CoolApk.js` | CoolApk 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/CoolApk.min.js` | CoolApk 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Didi.js` | Didi 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Didi.min.js` | Didi 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Dongqiudi.js` | Dongqiudi 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/FlyPiggy.js` | FlyPiggy 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/iQiyi.js` | iQiyi 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/ITHome.js` | ITHome 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/ITHome.min.js` | ITHome 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Keep.js` | Keep 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Keep.min.js` | Keep 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Netease.js` | Netease 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Netease.min.js` | Netease 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/PupuMarket.js` | PupuMarket 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Quark.js` | Quark 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Quark.min.js` | Quark 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/SfExpress.js` | SfExpress 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/smzdm.js` | smzdm 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/smzdm.min.js` | smzdm 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Stay.js` | Stay 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Tieba.js` | Tieba 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Tieba.min.js` | Tieba 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/UmeTrip.js` | UmeTrip 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/UmeTrip.min.js` | UmeTrip 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Youtube.js` | Youtube 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Youtube.min.js` | Youtube 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Zhihu.js` | Zhihu 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/Other/Zhihu.min.js` | Zhihu 压缩版 其他应用去广告脚本，待验证当前接口兼容性。 |
+| `Scripts/AdBlock/RedNote/RedNote.js` | RedNote 小红书/RedNote 去广告脚本。 |
+| `Scripts/AdBlock/RedNote/RedNote.min.js` | RedNote 压缩版 小红书/RedNote 去广告脚本。 |
+| `Scripts/AdBlock/Wechat/UnlockLink.js` | UnlockLink 微信相关去广告或链接解锁脚本。 |
+| `Scripts/AdBlock/Wechat/UnlockLink.min.js` | UnlockLink 压缩版 微信相关去广告或链接解锁脚本。 |
+| `Scripts/AdBlock/Wechat/Wechat.js` | Wechat 微信相关去广告或链接解锁脚本。 |
+| `Scripts/AdBlock/Weibo/weibo_new.js` | weibo new 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Weibo/weibo_new.min.js` | weibo new 压缩版 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Weibo/weibo_search_info.json` | weibo search info 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Weibo/weibo_search_topic.json` | weibo search topic 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Weibo/weibo.js` | weibo 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Weibo/weibo.min.js` | weibo 压缩版 微博去广告脚本或配置数据。 |
+| `Scripts/AdBlock/Zhihu/Answer.js` | Answer 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Feed.js` | Feed 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Link.js` | Link 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/People.js` | People 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Recommend.js` | Recommend 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/ScreenAdvs.js` | ScreenAdvs 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Zhihu_dep.js` | Zhihu dep 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Zhihu.js` | Zhihu 知乎去广告脚本模块。 |
+| `Scripts/AdBlock/Zhihu/Zhihu.min.js` | Zhihu 压缩版 知乎去广告脚本模块。 |
+| `Scripts/Other/ColorWeather.js` | ColorWeather 其他功能脚本，待验证用途。 |
+| `Scripts/Other/Dqsj.js` | Dqsj 其他功能脚本，待验证用途。 |
+| `Scripts/Readme.md` | 脚本目录说明文档，当前需补充脚本用途和风险说明。 |
+| `Scripts/Unlock/BdCloud.js` | BdCloud 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/BiliBili.proto.js` | BiliBili.proto 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/BiliBili.proto.min.js` | BiliBili.proto 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Boohee.js` | Boohee 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Boohee.min.js` | Boohee 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ByButter.js` | ByButter 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ByButter.min.js` | ByButter 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/CamScanner.js` | CamScanner 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ClarityPro.js` | ClarityPro 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ClarityPro.min.js` | ClarityPro 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Emby.js` | Emby 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/FlightRadar24.js` | FlightRadar24 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/FlightRadar24.min.js` | FlightRadar24 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Foodie.js` | Foodie 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Foodie.min.js` | Foodie 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Goodbility.js` | Goodbility 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Goodbility.min.js` | Goodbility 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Grow.js` | Grow 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Grow.min.js` | Grow 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/iTunes.js` | iTunes 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/iTunes.min.js` | iTunes 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Keep.js` | Keep 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Keep.min.js` | Keep 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Kuwo.js` | Kuwo 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/MIX.js` | MIX 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/MoneyThings.js` | MoneyThings 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/MoneyThings.min.js` | MoneyThings 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/MoveRevenueCat.js` | MoveRevenueCat 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/MoveRevenueCat.min.js` | MoveRevenueCat 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Nicegram.js` | Nicegram 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/NiceGram.json` | NiceGram 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Nicegram.min.js` | Nicegram 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Notability.js` | Notability 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Notability.min.js` | Notability 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Notability.old.js` | Notability 旧版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/PicsArt.js` | PicsArt 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/PicsArt.min.js` | PicsArt 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Pillow.js` | Pillow 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Pillow.min.js` | Pillow 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Polarr.js` | Polarr 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/RevenueCat.js` | RevenueCat 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/RevenueCat.min.js` | RevenueCat 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/RevenueCat.RmHeaders.js` | RevenueCat.RmHeaders 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Spotify.js` | Spotify 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Spotify.min.js` | Spotify 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ToToWallet.js` | ToToWallet 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/ToToWallet.min.js` | ToToWallet 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/VivaVideo.js` | VivaVideo 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/VSCO.js` | VSCO 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WechatUrlUnlock.js` | WechatUrlUnlock 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Wnyd.js` | Wnyd 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WPS.docer-power.js` | WPS.docer power 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WPS.docer.js` | WPS.docer 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WPS.js` | WPS 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WPS.local.js` | WPS.local 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/WPS.min.js` | WPS 压缩版 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Xjsp.js` | Xjsp 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+| `Scripts/Unlock/Zymh.js` | Zymh 解锁类脚本，高风险资源，待验证当前可用性与合规性。 |
+
+### tools 校验工具
+
+| 文件 | 说明 |
+|---|---|
+| `tools/fixtures/qx-validator/invalid.list` | 校验 CLI 使用的测试样例文件。 |
+| `tools/fixtures/qx-validator/legacy.md` | 校验 CLI 使用的测试样例文件。 |
+| `tools/fixtures/qx-validator/sample.conf` | 校验 CLI 使用的测试样例文件。 |
+| `tools/fixtures/qx-validator/valid.list` | 校验 CLI 使用的测试样例文件。 |
+| `tools/validate-qx-rules.js` | 只读 Quantumult X 规则校验 CLI，用于扫描格式问题、重复规则和旧链接。 |
+| `tools/validate-qx-rules.test.js` | 校验 CLI 的 Node.js 内置测试用例。 |
+
+### docs 维护文档
+
+| 文件 | 说明 |
+|---|---|
+| `docs/optimization-plan.md` | 项目全面审计后的优化计划书。 |
+| `docs/superpowers/plans/2026-05-27-qx-rule-validator.md` | Superpowers 工作流生成的实施计划文档，用于记录校验器开发步骤。 |
+| `docs/superpowers/specs/2026-05-27-qx-rule-validator-design.md` | Superpowers 工作流生成的设计规格文档，用于记录校验器方案。 |
+
+### images 图片资源
+
+| 文件 | 说明 |
+|---|---|
+| `images/logo.png` | 仓库 README 使用的项目标识图片。 |
+
 ## 当前仓库审查结论
 
 截至 2026-05-27，本地仓库初步审查结果：
