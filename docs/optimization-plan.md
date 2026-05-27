@@ -86,6 +86,15 @@
 - 保留集合规则与细分规则的正常重叠，不做跨文件自动删除。
 - 对广告、媒体、服务、地区规则分别建立维护策略。
 
+执行状态：已在 2026-05-27 先处理高重复文件，仅删除同一文件内重复规则行，保留跨文件重叠和集合规则与细分规则的正常重叠。`Rules/Region/Global.list` 删除 236 条重复规则，`BackCN/BackCN.list` 删除 2 条重复规则，`Rules/Services/Microsoft.list` 删除 8 条重复规则；清理后上述 3 个文件不再产生重复规则告警。当前 strict 校验为 0 个 error，重复规则剩余告警进入后续按类别批次处理。
+
+分类维护策略：
+
+- 广告规则：保留集合型广告拦截与应用/场景细分广告规则的边界，新增规则前先确认策略动作，默认只做同文件去重。
+- 媒体规则：`Rules/Media/DomesticMedia.list`、`Rules/Media/ForeignMedia.list` 作为集合入口维护，单服务媒体文件允许与集合入口保留可解释重叠。
+- 服务规则：Microsoft、Google、GitHub、OpenAI 等服务文件优先维护服务自身域名、进程和 IP 规则，不因其出现在媒体、社交或地区集合中自动删除。
+- 地区规则：`Rules/Region/China.list`、`Rules/Region/ChinaIP.list`、`Rules/Region/ChinaASN.list`、`Rules/Region/Global.list` 与 `BackCN/BackCN.list` 作为基础分流层维护，后续去重限定在单文件内部。
+
 ### 第五阶段：自动化
 
 - 增加 GitHub Actions：运行 `node --test tools/validate-qx-rules.test.js`。
