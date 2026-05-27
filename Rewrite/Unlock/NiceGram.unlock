@@ -1,0 +1,12 @@
+// ==UserScript==
+// @ScriptName        NiceGram 解锁
+// @UpdateTime        2024-09-16 17:31
+// @Suitable          自行观看“# > ”注释内容
+// @Attention         如需引用请注明出处，谢谢合作！
+// ==/UserScript==
+
+
+hostname=nicegram.cloud
+
+# > Nicegram☆解锁会员权限（2024-02-24）@ddgksf2013
+^https?:\/\/nicegram\.cloud\/api\/v\d\/(ai-assistant\/purchase-list|user\/info|telegram\/auth) url script-response-body https://r.sveir.xyz/Scripts/Unlock/Nicegram.min.js

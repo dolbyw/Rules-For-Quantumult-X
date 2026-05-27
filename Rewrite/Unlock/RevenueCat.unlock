@@ -1,0 +1,16 @@
+// ==UserScript==
+// @ScriptName        𝐑𝐞𝐯𝐞𝐧𝐮𝐞𝐂𝐚𝐭多合一脚本[墨鱼版]
+// @UpdateTime        2024-09-16 17:31
+// @Suitable          自行观看“# > ”注释内容
+// @Attention         如需引用请注明出处，谢谢合作！
+// @ScriptURL         https://gist.githubusercontent.com/ddgksf2013/dbb1695cd96743eef18f3fac5c6fe227/raw/revenuecat.js
+// ==/UserScript==
+
+
+hostname=api.revenuecat.com
+
+# ～ RevenueCat@ddgksf2013
+^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$) url script-response-body https://r.sveir.xyz/Scripts/Unlock/RevenueCat.min.js
+^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) url script-request-header https://r.sveir.xyz/Scripts/Unlock/RevenueCat.RmHeaders.js
+
+

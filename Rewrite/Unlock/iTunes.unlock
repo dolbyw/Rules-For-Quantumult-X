@@ -1,0 +1,11 @@
+// ==UserScript==
+// @ScriptName        iTunes 解锁
+// @UpdateTime        2024-09-16 17:31
+// @Suitable          自行观看“# > ”注释内容
+// @Attention         如需引用请注明出处，谢谢合作！
+// ==/UserScript==
+
+hostname = buy.itunes.apple.com
+
+# ～ BuyiTunes@ddgksf2013
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://r.sveir.xyz/Scripts/Unlock/iTunes.min.js
