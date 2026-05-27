@@ -1,8 +1,8 @@
 # Rules For Quantumult X
 
-本仓库维护 Quantumult X 使用的分流规则、重写规则、脚本片段和示例配置，目标是让 iOS 用户可以按需导入远程资源，并通过一键订阅链接完成常见的国内直连、海外代理、流媒体分流、广告拦截和功能增强配置。
+本仓库维护 Quantumult X 的示例配置、重写资源与维护脚本，目标是让 iOS 用户直接通过订阅链接完成可用配置导入，并持续跟随上游规则自动更新。
 
-本项目由 [dolbyw/Rules-For-Quantumult-X](https://github.com/dolbyw/Rules-For-Quantumult-X) 继续维护。该仓库基于较早的公开规则项目整理而来，原始规则来源较多，部分内容来自公开项目或网络整理；如发现来源缺失、规则失效、侵权或误杀，请提交 issue。
+本项目由 [dolbyw/Rules-For-Quantumult-X](https://github.com/dolbyw/Rules-For-Quantumult-X) 继续维护。当前策略是尽量复用成熟上游资源（`blackmatrix7/ios_rule_script`、`Loyalsoldier/surge-rules` + 解析器转换），避免在本仓库自建分流规则轮子。
 
 ## 重要说明
 
@@ -13,6 +13,12 @@
 - 去广告和脚本重写依赖 HTTPS 解密（MITM），存在隐私、安全和兼容性风险。
 - 解锁类脚本可能违反应用服务条款，也可能随应用更新失效。请自行评估风险。
 - 本仓库不保证任何流媒体解锁、会员功能、广告拦截或地区访问一定可用。
+
+## 自动化维护
+
+- `validate.yml`：PR / Push 触发，执行测试、规则 strict 校验、配置审计、旧链接检查和 README 索引一致性检查。
+- `auto-update.yml`：定时任务触发，自动刷新 README 一键订阅区块和文件索引，执行全量校验并在有变更时自动提交。
+- 订阅链接与文件索引均由脚本生成，请不要手改自动生成区块。
 
 ## Quantumult X 配置基础
 
@@ -80,6 +86,13 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 - `opt-parser`：启用资源解析器转换，导入 Surge/Clash 等非原生 Quantumult X 规则时需要开启。
 - `inserted-resource`：使用 Quantumult X 内置资源时会出现，如 `FILTER_REGION`、`FILTER_LAN`。
 
+推荐统一使用上游解析器（不要自建解析脚本）：
+
+```ini
+[general]
+resource_parser_url = https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+```
+
 ### 远程重写资源
 
 远程重写写在 `[rewrite_remote]` 中：
@@ -104,26 +117,51 @@ url script-analyze-echo-response
 
 ## 一键订阅链接
 
-推荐优先使用 GitHub Raw 链接。示例：
+<!-- AUTO_SUBSCRIPTION_LINKS:START -->
+> 自动生成：请勿手改本区块，运行 `node tools/generate-subscription-links.js` 更新。
+> 基准配置：`Sample_v1.5.3.conf`，内容哈希：`fb8c15192512`。
+
+### 配置订阅（建议）
 
 ```text
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GlobalMedia/GlobalMedia.list
+https://raw.githubusercontent.com/dolbyw/Rules-For-Quantumult-X/main/Sample_v1.5.3.conf
 ```
 
-也可以使用 jsDelivr：
+备用 CDN：
 
 ```text
-https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GlobalMedia/GlobalMedia.list
+https://cdn.jsdelivr.net/gh/dolbyw/Rules-For-Quantumult-X@main/Sample_v1.5.3.conf
 ```
 
-如果以后配置自有 CDN，可以保持路径不变，仅替换域名部分。例如：
+### QuanX 一键导入（通用链接）
+
+追加导入（保留现有资源）：
 
 ```text
-https://你的镜像域名/rule/QuantumultX/GlobalMedia/GlobalMedia.list
+https://quantumult.app/x/open-app/add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
 ```
 
-当前 README 不再推荐旧仓库的 `r.sveir.xyz` 域名，避免用户导入到不可控的旧资源。
+覆盖导入（替换现有资源）：
 
+```text
+https://quantumult.app/x/open-app/update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+```
+
+### QuanX URL Scheme（App 直开）
+
+追加导入：
+
+```text
+quantumult-x:///add-resource?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+```
+
+覆盖导入：
+
+```text
+quantumult-x:///update-configuration?remote-resource=%7B%22filter_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FHijacking%2FHijacking.list%2C%20tag%3DHijacking%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FAdvertising%2FAdvertising.list%2C%20tag%3DAdvertising%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGoogle%2FGoogle.list%2C%20tag%3DGoogle%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FMicrosoft%2FMicrosoft.list%2C%20tag%3DMicrosoft%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMedia%2FChinaMedia.list%2C%20tag%3DDomesticMedia%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobalMedia%2FGlobalMedia.list%2C%20tag%3DForeignMedia%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FGlobal%2FGlobal.list%2C%20tag%3DGlobal%2C%20force-policy%3DOutSide%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FApple%2FApple.list%2C%20tag%3DApple%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fblackmatrix7%2Fios_rule_script%2Fmaster%2Frule%2FQuantumultX%2FChinaMax%2FChinaMax.list%2C%20tag%3DDomestic%2C%20force-policy%3Ddirect%2C%20enabled%3Dtrue%22%5D%2C%22rewrite_remote%22%3A%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWebAdBlock.adblock%2C%20tag%3D%E5%B8%B8%E7%94%A8%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FZhihu.adblock%2C%20tag%3D%E7%9F%A5%E4%B9%8E%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FWeibo.adblock%2C%20tag%3D%E5%BE%AE%E5%8D%9A%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdBlock%2FYoutube.adblock%2C%20tag%3DYoutube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%22%2C%22https%3A%2F%2Fraw.githubusercontent.com%2Fdolbyw%2FRules-For-Quantumult-X%2Fmain%2FRewrite%2FAdvertising.adblock%2C%20tag%3D%E9%80%9A%E7%94%A8%E5%8E%BB%E5%B9%BF%E5%91%8A%22%5D%7D
+```
+
+<!-- AUTO_SUBSCRIPTION_LINKS:END -->
 ## 推荐导入顺序
 
 建议在 Quantumult X 的分流资源中按以下顺序导入：
@@ -145,8 +183,8 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 
 ```ini
 ; 需要 [general] 中已设置 resource_parser_url
-;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt, tag=Loyal-GFW, force-policy=OutSide, opt-parser=true, enabled=false
-;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt, tag=Loyal-Direct, force-policy=direct, opt-parser=true, enabled=false
+;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/ruleset/gfw.txt, tag=Loyal-GFW, force-policy=OutSide, opt-parser=true, enabled=false
+;https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/ruleset/direct.txt, tag=Loyal-Direct, force-policy=direct, opt-parser=true, enabled=false
 ```
 
 最后在 `[filter_local]` 中保留局域网和最终兜底：
@@ -261,238 +299,245 @@ Rules-For-Quantumult-X
 
 ## 文件说明索引
 
-本节按当前工作区文件树生成，覆盖 216 个文件。
+本节按当前工作区文件树生成，覆盖 225 个文件。
 
 | 文件 | 说明 |
 |---|---|
-| `.github/ISSUE_TEMPLATE/bug.md` | 项目文件。 |
-| `.github/ISSUE_TEMPLATE/需求请求.md` | 项目文件。 |
-| `.github/workflows/validate.yml` | 项目文件。 |
+| `.github/ISSUE_TEMPLATE/bug.md` | Issue 模板。 |
+| `.github/ISSUE_TEMPLATE/需求请求.md` | Issue 模板。 |
+| `.github/workflows/auto-update.yml` | GitHub Actions 工作流。 |
+| `.github/workflows/validate.yml` | GitHub Actions 工作流。 |
 | `.gitignore` | 项目文件。 |
-| `CODE_OF_CONDUCT.md` | 项目文件。 |
-| `LICENSE` | 项目文件。 |
-| `README.md` | 项目文件。 |
-| `Rewrite/4limbo.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Amap.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/BdMap.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/BiliBili.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Cainiao.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/ChinaUnicom.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Colorful.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/CoolApk.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Didi.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Keep.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/NeteaseMusic.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/RedNote.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Smzdm.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/StartUp.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/TieBa.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/TomatoNovel.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/WebAdBlock.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Weibo.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Weibo_New.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Youtube.adblock` | 项目文件。 |
-| `Rewrite/AdBlock/Zhihu.adblock` | 项目文件。 |
-| `Rewrite/Advertising.adblock` | 项目文件。 |
-| `Rewrite/Functional/BlockAppUpgrade.conf` | 项目文件。 |
-| `Rewrite/Functional/BlockHttpDNS.conf` | 项目文件。 |
-| `Rewrite/Functional/FakeSiteRedirect.conf` | 项目文件。 |
-| `Rewrite/Functional/RedirectToHttps.conf` | 项目文件。 |
-| `Rewrite/Rewrite_CornersHua.conf` | 项目文件。 |
-| `Rewrite/Rewrite_General.conf` | 项目文件。 |
-| `Rewrite/Rewrite_NodyDa.conf` | 项目文件。 |
-| `Rewrite/Rewrite_lhie1.conf` | 项目文件。 |
-| `Rewrite/Services/Apple/Location/Readme.md` | 项目文件。 |
-| `Rewrite/Services/Apple/TestFlight/README.md` | 项目文件。 |
-| `Rewrite/Services/Apple/TestFlight/TestFlightAccount.js` | 项目文件。 |
-| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.conf` | 项目文件。 |
-| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.js` | 项目文件。 |
-| `Rewrite/Services/Google/GoogleRecaptcha.js` | 项目文件。 |
-| `Rewrite/Services/Google/GoogleRecaptcha.min.js` | 项目文件。 |
-| `Rewrite/Services/Google/GoogleRecaptcha.rewrite` | 项目文件。 |
-| `Rewrite/Unlock/AliyunDrive.unlock` | 项目文件。 |
-| `Rewrite/Unlock/All.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Boohee.unlock` | 项目文件。 |
-| `Rewrite/Unlock/ByButter.unlock` | 项目文件。 |
-| `Rewrite/Unlock/ClarityPro.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Emby.unlock` | 项目文件。 |
-| `Rewrite/Unlock/FlightRadar24.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Foodie.unlock` | 项目文件。 |
-| `Rewrite/Unlock/GoodBility.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Grow.unlock` | 项目文件。 |
-| `Rewrite/Unlock/MoneyThings.unlock` | 项目文件。 |
-| `Rewrite/Unlock/NewBing.unlock` | 项目文件。 |
-| `Rewrite/Unlock/NiceGram.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Notability.unlock` | 项目文件。 |
-| `Rewrite/Unlock/PicsArt.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Pillow.unlock` | 项目文件。 |
-| `Rewrite/Unlock/RevenueCat.unlock` | 项目文件。 |
-| `Rewrite/Unlock/Spotify.unlock` | 项目文件。 |
-| `Rewrite/Unlock/ToToWallet.unlock` | 项目文件。 |
-| `Rewrite/Unlock/WPS.unlock` | 项目文件。 |
-| `Rewrite/Unlock/iTunes.unlock` | 项目文件。 |
-| `Rules/Media/Readme.md` | 项目文件。 |
-| `Sample_v1.0.9.conf` | 项目文件。 |
-| `Sample_v1.1.0.conf` | 项目文件。 |
-| `Sample_v1.4.0.conf` | 项目文件。 |
-| `Sample_v1.4.2.conf` | 项目文件。 |
-| `Sample_v1.5.3.conf` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.js` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.min.js` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.js` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.min.js` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.js` | 项目文件。 |
-| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.min.js` | 项目文件。 |
-| `Scripts/AdBlock/JD/jd_search_json.js` | 项目文件。 |
-| `Scripts/AdBlock/JD/jx_startup.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/12306.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Ahfs.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/AliyunDrive.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Amap.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Amap.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Amdc.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Amdc.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/BahamutAnimeAds.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/BahamutAnimeAds.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/BaiduMap.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/BaiduMap.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Cainiao.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Cainiao.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Colorful.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Colorful.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/CoolApk.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/CoolApk.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Didi.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Didi.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Dongqiudi.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/FlyPiggy.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/ITHome.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/ITHome.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Keep.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Keep.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Netease.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Netease.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/PupuMarket.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Quark.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Quark.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/SfExpress.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Stay.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Tieba.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Tieba.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/UmeTrip.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/UmeTrip.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Youtube.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Youtube.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Zhihu.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/Zhihu.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/iQiyi.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/smzdm.js` | 项目文件。 |
-| `Scripts/AdBlock/Other/smzdm.min.js` | 项目文件。 |
-| `Scripts/AdBlock/RedNote/RedNote.js` | 项目文件。 |
-| `Scripts/AdBlock/RedNote/RedNote.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Wechat/UnlockLink.js` | 项目文件。 |
-| `Scripts/AdBlock/Wechat/UnlockLink.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Wechat/Wechat.js` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo.js` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo_new.js` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo_new.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo_search_info.json` | 项目文件。 |
-| `Scripts/AdBlock/Weibo/weibo_search_topic.json` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Answer.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Feed.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Link.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/People.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Recommend.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/ScreenAdvs.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Zhihu.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Zhihu.min.js` | 项目文件。 |
-| `Scripts/AdBlock/Zhihu/Zhihu_dep.js` | 项目文件。 |
-| `Scripts/Other/ColorWeather.js` | 项目文件。 |
-| `Scripts/Other/Dqsj.js` | 项目文件。 |
-| `Scripts/Readme.md` | 项目文件。 |
-| `Scripts/Unlock/BdCloud.js` | 项目文件。 |
-| `Scripts/Unlock/BiliBili.proto.js` | 项目文件。 |
-| `Scripts/Unlock/BiliBili.proto.min.js` | 项目文件。 |
-| `Scripts/Unlock/Boohee.js` | 项目文件。 |
-| `Scripts/Unlock/Boohee.min.js` | 项目文件。 |
-| `Scripts/Unlock/ByButter.js` | 项目文件。 |
-| `Scripts/Unlock/ByButter.min.js` | 项目文件。 |
-| `Scripts/Unlock/CamScanner.js` | 项目文件。 |
-| `Scripts/Unlock/ClarityPro.js` | 项目文件。 |
-| `Scripts/Unlock/ClarityPro.min.js` | 项目文件。 |
-| `Scripts/Unlock/Emby.js` | 项目文件。 |
-| `Scripts/Unlock/FlightRadar24.js` | 项目文件。 |
-| `Scripts/Unlock/FlightRadar24.min.js` | 项目文件。 |
-| `Scripts/Unlock/Foodie.js` | 项目文件。 |
-| `Scripts/Unlock/Foodie.min.js` | 项目文件。 |
-| `Scripts/Unlock/Goodbility.js` | 项目文件。 |
-| `Scripts/Unlock/Goodbility.min.js` | 项目文件。 |
-| `Scripts/Unlock/Grow.js` | 项目文件。 |
-| `Scripts/Unlock/Grow.min.js` | 项目文件。 |
-| `Scripts/Unlock/Keep.js` | 项目文件。 |
-| `Scripts/Unlock/Keep.min.js` | 项目文件。 |
-| `Scripts/Unlock/Kuwo.js` | 项目文件。 |
-| `Scripts/Unlock/MIX.js` | 项目文件。 |
-| `Scripts/Unlock/MoneyThings.js` | 项目文件。 |
-| `Scripts/Unlock/MoneyThings.min.js` | 项目文件。 |
-| `Scripts/Unlock/MoveRevenueCat.js` | 项目文件。 |
-| `Scripts/Unlock/MoveRevenueCat.min.js` | 项目文件。 |
-| `Scripts/Unlock/NiceGram.json` | 项目文件。 |
-| `Scripts/Unlock/Nicegram.js` | 项目文件。 |
-| `Scripts/Unlock/Nicegram.min.js` | 项目文件。 |
-| `Scripts/Unlock/Notability.js` | 项目文件。 |
-| `Scripts/Unlock/Notability.min.js` | 项目文件。 |
-| `Scripts/Unlock/Notability.old.js` | 项目文件。 |
-| `Scripts/Unlock/PicsArt.js` | 项目文件。 |
-| `Scripts/Unlock/PicsArt.min.js` | 项目文件。 |
-| `Scripts/Unlock/Pillow.js` | 项目文件。 |
-| `Scripts/Unlock/Pillow.min.js` | 项目文件。 |
-| `Scripts/Unlock/Polarr.js` | 项目文件。 |
-| `Scripts/Unlock/RevenueCat.RmHeaders.js` | 项目文件。 |
-| `Scripts/Unlock/RevenueCat.js` | 项目文件。 |
-| `Scripts/Unlock/RevenueCat.min.js` | 项目文件。 |
-| `Scripts/Unlock/Spotify.js` | 项目文件。 |
-| `Scripts/Unlock/Spotify.min.js` | 项目文件。 |
-| `Scripts/Unlock/ToToWallet.js` | 项目文件。 |
-| `Scripts/Unlock/ToToWallet.min.js` | 项目文件。 |
-| `Scripts/Unlock/VSCO.js` | 项目文件。 |
-| `Scripts/Unlock/VivaVideo.js` | 项目文件。 |
-| `Scripts/Unlock/WPS.docer-power.js` | 项目文件。 |
-| `Scripts/Unlock/WPS.docer.js` | 项目文件。 |
-| `Scripts/Unlock/WPS.js` | 项目文件。 |
-| `Scripts/Unlock/WPS.local.js` | 项目文件。 |
-| `Scripts/Unlock/WPS.min.js` | 项目文件。 |
-| `Scripts/Unlock/WechatUrlUnlock.js` | 项目文件。 |
-| `Scripts/Unlock/Wnyd.js` | 项目文件。 |
-| `Scripts/Unlock/Xjsp.js` | 项目文件。 |
-| `Scripts/Unlock/Zymh.js` | 项目文件。 |
-| `Scripts/Unlock/iTunes.js` | 项目文件。 |
-| `Scripts/Unlock/iTunes.min.js` | 项目文件。 |
-| `docs/optimization-plan.md` | 项目文件。 |
-| `docs/superpowers/plans/2026-05-27-qx-rule-validator.md` | 项目文件。 |
-| `docs/superpowers/specs/2026-05-27-qx-rule-validator-design.md` | 项目文件。 |
-| `images/logo.png` | 项目文件。 |
-| `tools/check-maintenance.js` | 项目文件。 |
-| `tools/check-maintenance.test.js` | 项目文件。 |
-| `tools/fixtures/qx-validator/compatible-format/policyless-asn.list` | 项目文件。 |
-| `tools/fixtures/qx-validator/duplicate/duplicate.list` | 项目文件。 |
-| `tools/fixtures/qx-validator/legacy-link/legacy.md` | 项目文件。 |
-| `tools/fixtures/qx-validator/real-error/invalid.list` | 项目文件。 |
-| `tools/validate-qx-rules.js` | 项目文件。 |
-| `tools/validate-qx-rules.test.js` | 项目文件。 |
-
+| `CODE_OF_CONDUCT.md` | 文档。 |
+| `LICENSE` | 开源许可证。 |
+| `README.md` | 项目主说明。 |
+| `Rewrite/4limbo.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Amap.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/BdMap.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/BiliBili.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Cainiao.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/ChinaUnicom.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Colorful.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/CoolApk.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Didi.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Keep.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/NeteaseMusic.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/RedNote.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Smzdm.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/StartUp.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/TieBa.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/TomatoNovel.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/WebAdBlock.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Weibo.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Weibo_New.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Youtube.adblock` | 重写规则资源。 |
+| `Rewrite/AdBlock/Zhihu.adblock` | 重写规则资源。 |
+| `Rewrite/Advertising.adblock` | 重写规则资源。 |
+| `Rewrite/Functional/BlockAppUpgrade.conf` | 重写规则资源。 |
+| `Rewrite/Functional/BlockHttpDNS.conf` | 重写规则资源。 |
+| `Rewrite/Functional/FakeSiteRedirect.conf` | 重写规则资源。 |
+| `Rewrite/Functional/RedirectToHttps.conf` | 重写规则资源。 |
+| `Rewrite/Rewrite_CornersHua.conf` | 重写规则资源。 |
+| `Rewrite/Rewrite_General.conf` | 重写规则资源。 |
+| `Rewrite/Rewrite_NodyDa.conf` | 重写规则资源。 |
+| `Rewrite/Rewrite_lhie1.conf` | 重写规则资源。 |
+| `Rewrite/Services/Apple/Location/Readme.md` | 重写规则资源。 |
+| `Rewrite/Services/Apple/TestFlight/README.md` | 重写规则资源。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightAccount.js` | 重写规则资源。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.conf` | 重写规则资源。 |
+| `Rewrite/Services/Apple/TestFlight/TestFlightDownload.js` | 重写规则资源。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.js` | 重写规则资源。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.min.js` | 重写规则资源。 |
+| `Rewrite/Services/Google/GoogleRecaptcha.rewrite` | 重写规则资源。 |
+| `Rewrite/Unlock/AliyunDrive.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/All.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Boohee.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/ByButter.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/ClarityPro.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Emby.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/FlightRadar24.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Foodie.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/GoodBility.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Grow.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/MoneyThings.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/NewBing.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/NiceGram.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Notability.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/PicsArt.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Pillow.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/RevenueCat.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/Spotify.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/ToToWallet.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/WPS.unlock` | 重写规则资源。 |
+| `Rewrite/Unlock/iTunes.unlock` | 重写规则资源。 |
+| `Rules/Media/Readme.md` | 规则说明文档。 |
+| `Sample_v1.0.9.conf` | 示例配置。 |
+| `Sample_v1.1.0.conf` | 示例配置。 |
+| `Sample_v1.4.0.conf` | 示例配置。 |
+| `Sample_v1.4.2.conf` | 示例配置。 |
+| `Sample_v1.5.3.conf` | 示例配置。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.js` | 脚本资源。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.AdBlock.response.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.js` | 脚本资源。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.js` | 脚本资源。 |
+| `Scripts/AdBlock/BiliBili/BiliBili.protobuf.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/JD/jd_search_json.js` | 脚本资源。 |
+| `Scripts/AdBlock/JD/jx_startup.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/12306.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Ahfs.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/AliyunDrive.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Amap.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Amap.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Amdc.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Amdc.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/BahamutAnimeAds.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/BahamutAnimeAds.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/BaiduMap.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/BaiduMap.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Cainiao.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Cainiao.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Colorful.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Colorful.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/CoolApk.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/CoolApk.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Didi.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Didi.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Dongqiudi.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/FlyPiggy.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/ITHome.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/ITHome.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Keep.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Keep.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Netease.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Netease.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/PupuMarket.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Quark.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Quark.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/SfExpress.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Stay.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Tieba.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Tieba.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/UmeTrip.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/UmeTrip.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Youtube.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Youtube.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Zhihu.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/Zhihu.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/iQiyi.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/smzdm.js` | 脚本资源。 |
+| `Scripts/AdBlock/Other/smzdm.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/RedNote/RedNote.js` | 脚本资源。 |
+| `Scripts/AdBlock/RedNote/RedNote.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Wechat/UnlockLink.js` | 脚本资源。 |
+| `Scripts/AdBlock/Wechat/UnlockLink.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Wechat/Wechat.js` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo.js` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo_new.js` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo_new.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo_search_info.json` | 脚本资源。 |
+| `Scripts/AdBlock/Weibo/weibo_search_topic.json` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Answer.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Feed.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Link.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/People.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Recommend.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/ScreenAdvs.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Zhihu.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Zhihu.min.js` | 脚本资源。 |
+| `Scripts/AdBlock/Zhihu/Zhihu_dep.js` | 脚本资源。 |
+| `Scripts/Other/ColorWeather.js` | 脚本资源。 |
+| `Scripts/Other/Dqsj.js` | 脚本资源。 |
+| `Scripts/Readme.md` | 脚本资源。 |
+| `Scripts/Unlock/BdCloud.js` | 脚本资源。 |
+| `Scripts/Unlock/BiliBili.proto.js` | 脚本资源。 |
+| `Scripts/Unlock/BiliBili.proto.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Boohee.js` | 脚本资源。 |
+| `Scripts/Unlock/Boohee.min.js` | 脚本资源。 |
+| `Scripts/Unlock/ByButter.js` | 脚本资源。 |
+| `Scripts/Unlock/ByButter.min.js` | 脚本资源。 |
+| `Scripts/Unlock/CamScanner.js` | 脚本资源。 |
+| `Scripts/Unlock/ClarityPro.js` | 脚本资源。 |
+| `Scripts/Unlock/ClarityPro.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Emby.js` | 脚本资源。 |
+| `Scripts/Unlock/FlightRadar24.js` | 脚本资源。 |
+| `Scripts/Unlock/FlightRadar24.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Foodie.js` | 脚本资源。 |
+| `Scripts/Unlock/Foodie.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Goodbility.js` | 脚本资源。 |
+| `Scripts/Unlock/Goodbility.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Grow.js` | 脚本资源。 |
+| `Scripts/Unlock/Grow.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Keep.js` | 脚本资源。 |
+| `Scripts/Unlock/Keep.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Kuwo.js` | 脚本资源。 |
+| `Scripts/Unlock/MIX.js` | 脚本资源。 |
+| `Scripts/Unlock/MoneyThings.js` | 脚本资源。 |
+| `Scripts/Unlock/MoneyThings.min.js` | 脚本资源。 |
+| `Scripts/Unlock/MoveRevenueCat.js` | 脚本资源。 |
+| `Scripts/Unlock/MoveRevenueCat.min.js` | 脚本资源。 |
+| `Scripts/Unlock/NiceGram.json` | 脚本资源。 |
+| `Scripts/Unlock/Nicegram.js` | 脚本资源。 |
+| `Scripts/Unlock/Nicegram.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Notability.js` | 脚本资源。 |
+| `Scripts/Unlock/Notability.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Notability.old.js` | 脚本资源。 |
+| `Scripts/Unlock/PicsArt.js` | 脚本资源。 |
+| `Scripts/Unlock/PicsArt.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Pillow.js` | 脚本资源。 |
+| `Scripts/Unlock/Pillow.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Polarr.js` | 脚本资源。 |
+| `Scripts/Unlock/RevenueCat.RmHeaders.js` | 脚本资源。 |
+| `Scripts/Unlock/RevenueCat.js` | 脚本资源。 |
+| `Scripts/Unlock/RevenueCat.min.js` | 脚本资源。 |
+| `Scripts/Unlock/Spotify.js` | 脚本资源。 |
+| `Scripts/Unlock/Spotify.min.js` | 脚本资源。 |
+| `Scripts/Unlock/ToToWallet.js` | 脚本资源。 |
+| `Scripts/Unlock/ToToWallet.min.js` | 脚本资源。 |
+| `Scripts/Unlock/VSCO.js` | 脚本资源。 |
+| `Scripts/Unlock/VivaVideo.js` | 脚本资源。 |
+| `Scripts/Unlock/WPS.docer-power.js` | 脚本资源。 |
+| `Scripts/Unlock/WPS.docer.js` | 脚本资源。 |
+| `Scripts/Unlock/WPS.js` | 脚本资源。 |
+| `Scripts/Unlock/WPS.local.js` | 脚本资源。 |
+| `Scripts/Unlock/WPS.min.js` | 脚本资源。 |
+| `Scripts/Unlock/WechatUrlUnlock.js` | 脚本资源。 |
+| `Scripts/Unlock/Wnyd.js` | 脚本资源。 |
+| `Scripts/Unlock/Xjsp.js` | 脚本资源。 |
+| `Scripts/Unlock/Zymh.js` | 脚本资源。 |
+| `Scripts/Unlock/iTunes.js` | 脚本资源。 |
+| `Scripts/Unlock/iTunes.min.js` | 脚本资源。 |
+| `docs/optimization-plan.md` | 维护文档。 |
+| `docs/superpowers/plans/2026-05-27-qx-rule-validator.md` | 维护文档。 |
+| `docs/superpowers/specs/2026-05-27-qx-rule-validator-design.md` | 维护文档。 |
+| `images/logo.png` | 静态资源。 |
+| `tools/audit-sample-configs.js` | 维护脚本。 |
+| `tools/audit-sample-configs.test.js` | 维护脚本。 |
+| `tools/check-maintenance.js` | 维护脚本。 |
+| `tools/check-maintenance.test.js` | 维护脚本。 |
+| `tools/fixtures/qx-audit/bad/Sample_bad.conf` | 校验器测试样例。 |
+| `tools/fixtures/qx-audit/good/Sample_ok.conf` | 校验器测试样例。 |
+| `tools/fixtures/qx-validator/compatible-format/policyless-asn.list` | 校验器测试样例。 |
+| `tools/fixtures/qx-validator/duplicate/duplicate.list` | 校验器测试样例。 |
+| `tools/fixtures/qx-validator/legacy-link/legacy.md` | 校验器测试样例。 |
+| `tools/fixtures/qx-validator/real-error/invalid.list` | 校验器测试样例。 |
+| `tools/generate-readme-index.js` | 维护脚本。 |
+| `tools/generate-readme-index.test.js` | 维护脚本。 |
+| `tools/generate-subscription-links.js` | 维护脚本。 |
+| `tools/generate-subscription-links.test.js` | 维护脚本。 |
+| `tools/validate-qx-rules.js` | 维护脚本。 |
+| `tools/validate-qx-rules.test.js` | 维护脚本。 |
 ## 当前仓库审查结论
 
-截至 2026-05-27，本地仓库初步审查结果：
+截至 2026-05-28，本地仓库审查结果：
 
 - 已初始化 Git 仓库。
-- 当前版本管理文件 216 个，包括 `.adblock`、`.unlock`、`.conf`、`.js`、`.md`、工作流和维护脚本。
-- 根 README 已更新为当前维护仓库的说明，不再默认推荐旧仓库私有 CDN。
-- 仓库已增加 GitHub Actions，用于运行规则测试、strict 校验、旧链接检查和 README 文件索引一致性检查。
-- 分流规则已切换为上游规则源引用：默认使用 `blackmatrix7/ios_rule_script` 的 Quantumult X 规则目录。
-- 本仓库不再维护自建 `.list` 分流规则；`Loyalsoldier/surge-rules` 仅作为 Surge 场景参考，不作为 QuanX 默认入口。
-- `Scripts/Readme.md`、`Rules/Media/Readme.md` 和历史维护文档中仍保留部分旧仓库说明，应避免作为推荐入口。
+- README 文件索引覆盖当前工作区 225 个文件（已跟踪 + 未忽略未跟踪文件）。
+- 分流规则入口已切换为上游规则源：默认 `blackmatrix7`，`Loyalsoldier` 通过 `resource_parser_url + opt-parser=true` 兼容 QuanX 使用。
+- 示例配置中的失效远程重写入口已替换，统一指向当前可用资源。
+- 已接入自动生成脚本：`tools/generate-subscription-links.js`、`tools/generate-readme-index.js`。
+- 已接入配置审计脚本：`tools/audit-sample-configs.js`，用于性能/鲁棒性/可用性检查。
 
 ## 本地规则校验
 
@@ -528,11 +573,14 @@ node tools/validate-qx-rules.js --strict
 node tools/check-maintenance.js
 ```
 
-该检查会在生产资源中发现旧维护链接时返回非零退出码，并确认 README 文件说明索引覆盖所有已纳入版本管理的文件。测试和 CI 使用：
+该检查会在生产资源中发现旧维护链接时返回非零退出码，并确认 README 文件说明索引覆盖当前工作区文件（已跟踪与未跟踪，忽略规则文件除外）。测试和 CI 使用：
 
 ```powershell
-node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js
+node --test tools/*.test.js
+node tools/generate-subscription-links.js --check
+node tools/generate-readme-index.js --check
 node tools/validate-qx-rules.js --strict
+node tools/audit-sample-configs.js --strict
 node tools/check-maintenance.js
 ```
 

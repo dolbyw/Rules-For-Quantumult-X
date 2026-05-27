@@ -24,10 +24,19 @@ jobs:
           node-version: "24"
 
       - name: Run validator tests
-        run: node --test tools/validate-qx-rules.test.js tools/check-maintenance.test.js
+        run: node --test tools/*.test.js
 
       - name: Run strict rule validation
         run: node tools/validate-qx-rules.js --strict
+
+      - name: Run sample config audit
+        run: node tools/audit-sample-configs.js --strict
+
+      - name: Check README subscription links
+        run: node tools/generate-subscription-links.js --check
+
+      - name: Check README file index
+        run: node tools/generate-readme-index.js --check
 
       - name: Check legacy links and README index
         run: node tools/check-maintenance.js

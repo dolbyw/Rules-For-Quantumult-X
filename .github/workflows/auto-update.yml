@@ -1,0 +1,52 @@
+name: Auto Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Run unit tests
+        run: node --test tools/*.test.js
+
+      - name: Regenerate README subscription links
+        run: node tools/generate-subscription-links.js
+
+      - name: Regenerate README file index
+        run: node tools/generate-readme-index.js
+
+      - name: Validate repository
+        run: |
+          node tools/validate-qx-rules.js --strict
+          node tools/audit-sample-configs.js --strict --probe-remote --timeout-ms 15000
+          node tools/check-maintenance.js
+
+      - name: Commit updates
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git add Sample_v*.conf
+          git add .github/workflows
+          git add tools
+          git commit -m "chore: auto refresh quanx subscriptions and audits"
+          git push

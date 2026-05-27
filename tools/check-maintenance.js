@@ -24,10 +24,14 @@ function toPosix(filePath) {
 }
 
 function getTrackedFiles(rootDir) {
-  const output = execFileSync("git", ["-c", "core.quotepath=false", "ls-files"], {
+  const output = execFileSync(
+    "git",
+    ["-c", "core.quotepath=false", "ls-files", "--cached", "--others", "--exclude-standard"],
+    {
     cwd: rootDir,
     encoding: "utf8",
-  });
+    },
+  );
   return output
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -131,7 +135,7 @@ function formatMaintenanceReport(report) {
   lines.push(`README 索引缺失: ${report.readmeIndex.missing.length}`);
   lines.push(`README 索引陈旧: ${report.readmeIndex.stale.length}`);
   lines.push(`README 索引声明数量: ${report.readmeIndex.declaredCount ?? "未声明"}`);
-  lines.push(`版本管理文件数量: ${report.readmeIndex.expectedCount}`);
+  lines.push(`工作区文件数量: ${report.readmeIndex.expectedCount}`);
 
   if (report.legacyLinks.length > 0) {
     lines.push("", "旧链接明细:");
