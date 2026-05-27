@@ -12,6 +12,8 @@ const LEGACY_URL_PATTERNS = [
   /https?:\/\/raw\.githubusercontent\.com\/sve1r\/Rules-For-Quantumult-X/i,
   /https?:\/\/cdn\.jsdelivr\.net\/gh\/sve1r\/Rules-For-Quantumult-X/i,
 ];
+const SELF_GENERATED_RAW_PATTERN =
+  /^https:\/\/raw\.githubusercontent\.com\/dolbyw\/Rules-For-Quantumult-X\/main\/(Rules\/Generated\/.+)$/i;
 
 function parseArgs(argv) {
   const options = {
@@ -319,8 +321,10 @@ async function probeUrls(urls, timeoutMs) {
 async function buildAuditReport(options) {
   const files = collectSampleConfigs(options.targetPath);
   const targetStat = fs.statSync(options.targetPath);
+  const localRoot = targetStat.isFile() ? path.dirname(options.targetPath) : options.targetPath;
   const issues = [];
   const urlCandidates = new Set();
+  const localProbes = [];
 
   for (const file of files) {
     const relativeFile = normalizePath(path.relative(process.cwd(), file) || path.basename(file));
@@ -356,6 +360,16 @@ async function buildAuditReport(options) {
         }
         const entry = parseRemoteEntry(item.line);
         if (/^https:\/\//i.test(entry.url)) {
+          const selfMatch = entry.url.match(SELF_GENERATED_RAW_PATTERN);
+          if (selfMatch) {
+            const localTarget = path.join(localRoot, selfMatch[1].replaceAll("/", path.sep));
+            if (fs.existsSync(localTarget)) {
+              localProbes.push({ url: entry.url, ok: true, local: true });
+            } else {
+              addIssue(issues, "error", relativeFile, item.number, `本仓库 raw 链接对应文件不存在: ${selfMatch[1]}`);
+            }
+            continue;
+          }
           urlCandidates.add(entry.url);
         }
       }
@@ -374,7 +388,7 @@ async function buildAuditReport(options) {
     internalScriptUrls.forEach((url) => urlCandidates.add(url));
   }
 
-  const probes = [];
+  const probes = [...localProbes];
   if (options.probeRemote) {
     probes.push(...(await probeUrls([...urlCandidates], options.timeoutMs)));
     for (const result of probes) {

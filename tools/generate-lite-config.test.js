@@ -18,7 +18,8 @@ test("buildConfig 生成包含核心区块和稳定入口注释的 Quantumult X 
   assert(content.includes("[general]"));
   assert(content.includes("[policy]"));
   assert(content.includes("[filter_remote]"));
-  assert(content.includes("static = OutSide"));
+  assert(content.includes("static = 出境代理"));
+  assert(content.includes("force-policy=国内直连"));
   assert(content.includes("img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"));
   assert(content.endsWith("\n"));
 });
