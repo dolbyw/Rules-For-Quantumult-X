@@ -10,3 +10,10 @@ test("auto-update workflow 不再暂存已删除的历史 Sample 配置", () => 
 
   assert(!workflow.includes("git add Sample_v*.conf"));
 });
+
+test("auto-update workflow 不再运行 Loyalsoldier 本地转换器", () => {
+  const workflow = fs.readFileSync(path.join(ROOT_DIR, ".github", "workflows", "auto-update.yml"), "utf8");
+
+  assert(!workflow.includes("generate-loyalsoldier-rules"));
+  assert(!workflow.includes("git add Rules/Generated"));
+});

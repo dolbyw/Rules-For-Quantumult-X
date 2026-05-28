@@ -19,7 +19,7 @@ test("buildConfig 生成包含核心区块和稳定入口注释的 Quantumult X 
   assert(content.includes("[policy]"));
   assert(content.includes("[filter_remote]"));
   assert(content.includes("static = 出境代理"));
-  assert(content.includes("force-policy=国内直连"));
+  assert(content.includes("force-policy=直接连接"));
   assert(content.includes("img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"));
   assert(content.endsWith("\n"));
 });
@@ -38,6 +38,17 @@ test("buildConfig 默认关闭 AAAA 解析以减少移动网络 IPv6 干扰", ()
   const content = buildConfig();
 
   assert.match(content, /\[dns]\n[\s\S]*\nno-ipv6\n/);
+});
+
+test("buildConfig 使用 KOP-XIAO 在客户端解析 Loyalsoldier 规则", () => {
+  const content = buildConfig();
+
+  assert(!content.includes("Rules/Generated/Loyalsoldier"));
+  assert(!content.includes("ChinaMax/ChinaMax.list"));
+  assert(content.includes("Loyalsoldier/surge-rules/release/ruleset/gfw.txt"));
+  assert(content.includes("Loyalsoldier/surge-rules/release/ruleset/direct.txt"));
+  assert(content.includes("Loyalsoldier/surge-rules/release/ruleset/private.txt"));
+  assert(content.includes("tag=通用直连补充, force-policy=直接连接, update-interval=86400, opt-parser=true, enabled=true"));
 });
 
 test("generateLiteConfig 写入稳定配置，内容未变化时不创建新的日期快照", () => {

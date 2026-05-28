@@ -63,9 +63,6 @@ function describeFile(filePath) {
   if (filePath.startsWith("Rewrite/")) {
     return "重写规则资源。";
   }
-  if (filePath.startsWith("Rules/Generated/")) {
-    return "自动生成的 Quantumult X 规则。";
-  }
   if (filePath.startsWith("Scripts/")) {
     return "脚本资源。";
   }

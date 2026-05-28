@@ -21,12 +21,6 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Generate Loyalsoldier rules
-        run: node tools/generate-loyalsoldier-rules.js
-
-      - name: Check generated Loyalsoldier rules are synced
-        run: node tools/generate-loyalsoldier-rules.js --check
-
       - name: Generate lite configuration
         run: node tools/generate-lite-config.js
 
@@ -64,7 +58,6 @@ jobs:
           git add QuantumultX-Lite-*.conf
           git add .github/workflows
           git add config
-          git add Rules/Generated
           git add tools
           git commit -m "chore: auto refresh quanx subscriptions and audits"
           git push
