@@ -125,7 +125,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 
 ## 文件说明索引
 
-本节按当前工作区文件树生成，覆盖 146 个文件。
+本节按当前工作区文件树生成，覆盖 147 个文件。
 
 | 文件 | 说明 |
 |---|---|
@@ -275,6 +275,7 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 | `tools/generate-subscription-links.test.js` | 维护脚本。 |
 | `tools/validate-qx-rules.js` | 维护脚本。 |
 | `tools/validate-qx-rules.test.js` | 维护脚本。 |
+| `tools/workflow-guard.test.js` | 维护脚本。 |
 ## 当前仓库审查结论
 
 - 已切换到上游规则源维护模式（不再自建 `.list` 分流规则）。

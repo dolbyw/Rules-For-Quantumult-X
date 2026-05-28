@@ -62,7 +62,6 @@ jobs:
           git add README.md
           git add QuantumultX-Lite.conf
           git add QuantumultX-Lite-*.conf
-          git add Sample_v*.conf
           git add .github/workflows
           git add config
           git add Rules/Generated
